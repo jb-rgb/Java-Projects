@@ -8,7 +8,7 @@ public class Conexion {
     Connection conectar = null;
     String usuario = "postgres";
     String contrasenia = "#Jorge4820";
-    String bd = "proyecto";
+    String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "5432";
     String cadena = "jdbc:postgresql://" + ip + ":" + puerto + "/" + bd;
