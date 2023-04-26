@@ -6,4 +6,4 @@ public class Main {
         l.setVisible(true);
     }
 }
-//Hola el baras es puto
+// El Leo se la come entera
