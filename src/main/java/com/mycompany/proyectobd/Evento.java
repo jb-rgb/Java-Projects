@@ -10,5 +10,7 @@ package com.mycompany.proyectobd;
  * @author hp
  */
 public class Evento {
-    //el gay es gay
+    
+    
+   
 }
