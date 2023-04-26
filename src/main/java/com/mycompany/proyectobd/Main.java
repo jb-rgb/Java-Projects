@@ -10,3 +10,5 @@ public class Main {
 // puto
 //el socru es puto
 //y el gay es gay
+
+// El Dani y el Socru no le saben
