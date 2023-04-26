@@ -74,7 +74,7 @@ public class Cversiones {
             JOptionPane.showMessageDialog(null, "ERROR: " + e.toString());
         }
     }
-    
+
     public void insertarVersion(JTextField codigoVersion, JTextField anioVersion, JTextField requisitos, JTextField nombre_plataforma){
         setCodigo_version(codigoVersion.getText());
         setAnio_version(anioVersion.getText());
