@@ -15,7 +15,7 @@ public class Cverificacion {
     public void Validar(String correo, String contrasena){
         Conexion con = new Conexion();
         
-        String consulta = "SELECT * FROM usuario WHERE password = '" + contrasena + "' AND correo_usuario = '" + correo + "'";
+        String consulta = "SELECT * FROM usuario WHERE contrasena_usuario = '" + contrasena + "' AND correo_usuario = '" + correo + "'";
         Statement st ;
         
         try{
@@ -26,7 +26,7 @@ public class Cverificacion {
             if(rs.next()){//si existe el usuario 
                 
                 String correoU=rs.getString("correo_usuario");
-                String passwordU = rs.getString("password");
+                String passwordU = rs.getString("contrasena_usuario");
                 int rol  = rs.getInt("tipo_usuario");
                
                 if(rol==3){
@@ -46,7 +46,7 @@ public class Cverificacion {
                 JOptionPane.showMessageDialog(null,"No existe el usuario");
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "ERROR: " + e.toString());
+            JOptionPane.showMessageDialog(null, "ERROR: kjdfhgdhx " + e.toString());
         }
     }
 }
