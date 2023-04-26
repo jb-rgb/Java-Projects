@@ -6,4 +6,5 @@ public class Main {
         l.setVisible(true);
     }
 }
-//Y el gay tambien
+// EL leo se la come
+// puto
