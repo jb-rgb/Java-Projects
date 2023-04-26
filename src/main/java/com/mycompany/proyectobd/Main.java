@@ -2,8 +2,8 @@ package com.mycompany.proyectobd;
 
 public class Main {
     public static void main(String[] args) {
-        menuPrincipal mp = new menuPrincipal();
-        mp.setVisible(true);
+        login l = new login();
+        l.setVisible(true);
     }
 }
 //leo se la come;
