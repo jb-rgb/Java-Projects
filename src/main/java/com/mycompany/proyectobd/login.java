@@ -12,6 +12,7 @@ public class login extends javax.swing.JFrame {
 
     /**
      * Creates new form login
+     * el baras es re puto
      */
     public login() {
         initComponents();
