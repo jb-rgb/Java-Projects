@@ -46,7 +46,7 @@ public class Cverificacion {
                 JOptionPane.showMessageDialog(null,"No existe el usuario");
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "ERROR: kjdfhgdhx " + e.toString());
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.toString());
         }
     }
 }
