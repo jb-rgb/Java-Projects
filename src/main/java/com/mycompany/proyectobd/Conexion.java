@@ -1,10 +1,10 @@
 package com.mycompany.proyectobd;
 import java.sql.Connection;
-    
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import com.mysql.cj.jdbc.Driver;
+
 public class Conexion {
     Connection conectar = null;
     String usuario = "Administrador";
