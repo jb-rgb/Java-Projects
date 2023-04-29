@@ -148,7 +148,8 @@ public class usuario_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2_correoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       usuario usu = new usuario();
+       usu.crear_usuario(jTextField1_nombre, jTextField1_password, jTextField2_correo, jComboBox1_tipo.getSelectedIndex());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
