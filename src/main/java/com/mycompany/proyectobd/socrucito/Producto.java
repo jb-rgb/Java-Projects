@@ -4,6 +4,15 @@
  */
 package com.mycompany.proyectobd.socrucito;
 
+import com.mycompany.proyectobd.Conexion;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author socru
@@ -13,48 +22,182 @@ package com.mycompany.proyectobd.socrucito;
  * constructor, guardar, actualizar, eliminar
  */
 public class Producto {
-   private int id;
-   private String nombre;
-   private float precio_unitario;
-   private String descripcion;
+    private int idProducto;
+    private String nombreProducto;
+    private String descripcionProducto;
+    private float precioProducto;
+    private int cantidadProducto;
 
-   public Producto(int id, String nombre, float precio_unitario, String descripcion) {
-      this.id = id;
-      this.nombre = "nombre";
-      this.precio_unitario = precio_unitario;
-      this.descripcion = "descripcion";
-   }
+    public Producto(String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
+        this.nombreProducto = nombre_producto;
+        this.descripcionProducto = descripcion_producto;
+        this.precioProducto = precio_producto;
+        this.cantidadProducto = cantidad_producto;
+    }
+    
+    public int getIdProducto() {
+        return idProducto;
+    }
 
-   public int getId() {
-      return id;
-   }
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
 
-   public void setId(int id) {
-      this.id = id;
-   }
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
 
-   public String getNombre() {
-      return nombre;
-   }
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
 
-   public void setNombre(String nombre) {
-      this.nombre = nombre;
-   }
+    public String getDescripcionProducto() {
+        return descripcionProducto;
+    }
 
-   public float getPrecio_unitario() {
-      return precio_unitario;
-   }
+    public void setDescripcionProducto(String descripcionProducto) {
+        this.descripcionProducto = descripcionProducto;
+    }
 
-   public void setPrecio_unitario(float precio_unitario) {
-      this.precio_unitario = precio_unitario;
-   }
+    public float getPrecioProducto() {
+        return precioProducto;
+    }
 
-   public String getDescripcion() {
-      return descripcion;
-   }
+    public void setPrecioProducto(float precioProducto) {
+        this.precioProducto = precioProducto;
+    }
 
-   public void setDescripcion(String descripcion) {
-      this.descripcion = descripcion;
-   }
+    public int getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(int cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
+    
+    public void guardarProducto(JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
+        setNombreProducto(nombre_producto.getText());
+        setDescripcionProducto(descripcion_producto.getText());
+        setPrecioProducto(Float.parseFloat(precio_producto.getText()));
+        setCantidadProducto(Integer.parseInt(cantidad_producto.getText()));
+        Conexion conec = new Conexion();
+        String consulta = "INSERT INTO productos(nombre_producto, descripcion_producto, precio_producto, cantidad_producto) VALUES (?, ?, ?, ?);";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, getNombreProducto());
+            cs.setString(2, getDescripcionProducto());
+            cs.setString(3, Float.toString(getPrecioProducto()));
+            cs.setString(4, Integer.toString(getCantidadProducto()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "El producto se guardó correctamente");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void actualizarProducto(JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
+        setNombreProducto(nombre_producto.getText());
+        setDescripcionProducto(descripcion_producto.getText());
+        setPrecioProducto(Float.parseFloat(precio_producto.getText()));
+        setCantidadProducto(Integer.parseInt(cantidad_producto.getText()));
+        Conexion conec = new Conexion();
+        String consulta = "UPDATE productos SET nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, cantidad_producto = ? WHERE productos.id_producto = ?;";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, getNombreProducto());
+            cs.setString(2, getDescripcionProducto());
+            cs.setString(3, Float.toString(getPrecioProducto()));
+            cs.setString(4, Integer.toString(getCantidadProducto()));
+            cs.setString(5, Integer.toString(getIdProducto()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se actualizó correctamente el producto");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void mostrarProducto(JTable tablaProducto) {
+        Conexion conec = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_producto");
+        modelo.addColumn("nombre_producto");
+        modelo.addColumn("descripcion_producto");
+        modelo.addColumn("precio_producto");
+        modelo.addColumn("cantidad_producto");
+        tablaProducto.setModel(modelo);
+        String sql = "SELECT * FROM productos";
+        String[] datos = new String[5];
+        Statement st;
+        try {
+            st = conec.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                modelo.addRow(datos);
+            }
+            tablaProducto.setModel(modelo);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void eliminarProducto(JTextField id_producto) {
+        setIdProducto(Integer.parseInt(id_producto.toString()));
+        Conexion conec = new Conexion();
+        String consulta = "DELETE FROM productos WHERE productos.id_producto = ?;";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, Integer.toString(getIdProducto()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el producto");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void buscarProducto(JTextField nombre_producto) {
+        setNombreProducto(nombre_producto.toString());
+        Conexion conec = new Conexion();
+        String consulta = "SELECT * FROM productos WHERE productos.nombre_producto = ?;";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, getNombreProducto());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Producto encontrado");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void reducirCantidad(JTextField id_producto, JTextField cantidadAumentada) {
+        setIdProducto(Integer.parseInt(id_producto.toString()));
+        Conexion conec = new Conexion();
+        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE productos.id_producto = ?;";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, cantidadAumentada.toString());
+            cs.setString(2, Integer.toString(getIdProducto()));
+            JOptionPane.showMessageDialog(null, "Se actualizo la cantidad del producto");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void aumentarCantidad(JTextField id_producto, JTextField cantidadComprada) {
+        setIdProducto(Integer.parseInt(id_producto.toString()));
+        Conexion conec = new Conexion();
+        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto + ? WHERE productos.id_producto = ?";
+        try {
+            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
+            cs.setString(1, cantidadComprada.toString());
+            cs.setString(2, Integer.toString(getIdProducto()));
+            JOptionPane.showMessageDialog(null, "Se actualizo la cantidad del producto");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
 }
-
