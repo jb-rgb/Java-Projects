@@ -54,10 +54,30 @@ public class usuario {
     public void crear_usuario(JTextField jTextField1_nombre, JTextField jTextField1_password,
             JTextField jTextField2_correo, int tipo_usuario) {
         Conexion objetoConexion = new Conexion();
-        setNombre_usuario(jTextField1_nombre.getText());
-        setContrasena_usuario(jTextField1_password.getText());
-        setCorreo_usuario(jTextField2_correo.getText());
-        setTipo_usuario(tipo_usuario + 1);
+           //validar los datos del usuario a ingresar  nombre
+             String nombre = jTextField1_nombre.getText();
+    String password = jTextField1_password.getText();
+    String correo = jTextField2_correo.getText();
+    int tipo = tipo_usuario + 1;
+    
+    // Validar los datos del usuario antes de ingresarlos a la base de datos
+    if (nombre.isEmpty() || password.isEmpty() || correo.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    //correos validos: ejemplo@gmail.com , usuario_1@hotmail.com
+    
+    if (!correo.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+        JOptionPane.showMessageDialog(null, "El correo electrónico ingresado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+     // Validar contraseña
+      if (password.length() < 8) {
+                    JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+       }
+    
+    //ingresar la informacion a la base de datos 
         String consulta = "INSERT INTO cafeteria.usuario (nombre_usuario, contrasena_usuario, tipo_usuario, correo_usuario) VALUES (?, ?, ?, ?);";
         try {
 
