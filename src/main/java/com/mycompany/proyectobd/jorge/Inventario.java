@@ -1,5 +1,9 @@
 package com.mycompany.proyectobd.jorge;
 
+import com.mycompany.proyectobd.Conexion;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jorge
@@ -24,7 +28,11 @@ public class Inventario {
         this.idProducto = idProducto;
     }
     
-    public void mostrarInventario() {
+    public void mostrarInventario(JTable tablaInventario) {
+        Conexion conec = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_inventario");
+        modelo.addColumn("id_producto");
         
     }
 }
