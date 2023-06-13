@@ -236,7 +236,7 @@ public class Producto {
         }
     }
 }
-/*
+        
     public void cobrarAlimento(JTextField idAlimento, JTextField cantidadAlimento) {
         int AlimentoId = Integer.parseInt(idAlimento.getText());
         int cantidad = Integer.parseInt(cantidadAlimento.getText());
@@ -259,4 +259,4 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
-}*/
+}
