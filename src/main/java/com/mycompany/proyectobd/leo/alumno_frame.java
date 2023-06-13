@@ -5,6 +5,7 @@
 package com.mycompany.proyectobd.leo;
 
 import com.mycompany.proyectobd.JDueño;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,7 @@ public class alumno_frame extends javax.swing.JFrame {
         Alumno alumnos = new Alumno();
         alumnos.list(tabla_alumnos);
         this.setLocationRelativeTo(null);
+        jTextField1_beca.setEditable(false);
     }
 
     /**
@@ -46,6 +48,9 @@ public class alumno_frame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,7 +100,7 @@ public class alumno_frame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_alumnos);
 
-        jButton1.setText("Clear");
+        jButton1.setText("Limpiar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -113,6 +118,27 @@ public class alumno_frame extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Agregar asistencia");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Verificar asistencias");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Busqueda por matricula");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -143,7 +169,10 @@ public class alumno_frame extends javax.swing.JFrame {
                             .addComponent(jTextField1_matricula))
                         .addGap(71, 71, 71))
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -174,13 +203,19 @@ public class alumno_frame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jTextField1_beca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jButton5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,6 +242,7 @@ public class alumno_frame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Alumno alumnos = new Alumno();
         alumnos.clear(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
+        alumnos.list(tabla_alumnos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -217,10 +253,67 @@ public class alumno_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            Alumno alumnos = new Alumno();
+            /*Alumno alumnos = new Alumno();
             alumnos.modificar_alumno(jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
-            alumnos.list(tabla_alumnos);
+            alumnos.list(tabla_alumnos);*/
+             if (!jTextField1_matricula.getText().isEmpty()) {
+        if (!jTextField1_id.getText().isEmpty()) {
+            try {
+                Alumno alumnos = new Alumno();
+                alumnos.modificar_alumno(jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
+                alumnos.list(tabla_alumnos);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número válido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa un ID válido");
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona un alumno");
+           }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (!jTextField1_matricula.getText().isEmpty()) {
+        if (!jTextField1_id.getText().isEmpty()) {
+            try {
+                int id = Integer.parseInt(jTextField1_id.getText());
+                asistencia_alumno jd = new asistencia_alumno(jTextField1_matricula.getText(), id);
+                jd.setVisible(true); 
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número válido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa un ID válido");
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona un alumno");
+           }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+          if (!jTextField1_matricula.getText().isEmpty()) {
+        if (!jTextField1_id.getText().isEmpty()) {
+            try {
+                int id = Integer.parseInt(jTextField1_id.getText());
+                asistencias_por_alumno jd = new asistencias_por_alumno( id,jTextField1_matricula.getText(), jTextField1_nombre.getText());
+                jd.setVisible(true); 
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID debe ser un número válido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa un ID válido");
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona un alumno");
+           }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Alumno alumnos = new Alumno();
+        alumnos.research(tabla_alumnos, jTextField1_matricula);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,6 +354,9 @@ public class alumno_frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
