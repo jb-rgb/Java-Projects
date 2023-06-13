@@ -7,12 +7,12 @@ import com.mysql.cj.jdbc.Driver;
 
 public class Conexion {
     Connection conectar = null;
-    String usuario = "Administrador";
-    String contrasenia = "elbarahonaesputo1@#";
+    String usuario = "root";
+    String contrasenia = "mr.robot";
     String bd = "cafeteria";
-    String ip = "cafeteriaproyecto.mysql.database.azure.com";
+    String ip = "localhost";
     String puerto = "3036";
-    String cadena = "jdbc:mysql://cafeteriaproyecto.mysql.database.azure.com:3306/cafeteria?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    String cadena = "jdbc:mysql://localhost:3306/cafeteria?zeroDateTimeBehavior=CONVERT_TO_NULL";
     
     public Connection establecerConexion(){
         try{

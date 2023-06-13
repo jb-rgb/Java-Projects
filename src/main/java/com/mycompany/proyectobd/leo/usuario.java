@@ -64,24 +64,19 @@ public class usuario {
     if (nombre.isEmpty() || password.isEmpty() || correo.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
-    }
-    //correos validos: ejemplo@gmail.com , usuario_1@hotmail.com
-    
-    if (!correo.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+    }else if (!correo.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) { //correos validos: ejemplo@gmail.com , usuario_1@hotmail.com
+        //realizar consulta de veriricacion de correo el pide 
         JOptionPane.showMessageDialog(null, "El correo electrónico ingresado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
-    }
-     // Validar contraseña
-      if (password.length() < 8) {
+    }else if (password.length() < 8) {  // Validar contraseña
                     JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
-       }
-    
-    //ingresar la informacion a la base de datos 
-        String consulta = "INSERT INTO cafeteria.usuario (nombre_usuario, contrasena_usuario, tipo_usuario, correo_usuario) VALUES (?, ?, ?, ?);";
+       }else{
+         //ingresar la informacion a la base de datos 
+        String IngresarUsuarioConsulta = "INSERT INTO cafeteria.usuario (nombre_usuario, contrasena_usuario, tipo_usuario, correo_usuario) VALUES (?, ?, ?, ?);";
         try {
 
-            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(IngresarUsuarioConsulta);
             cs.setString(1, getNombre_usuario());
             cs.setString(2, getContrasena_usuario());
             cs.setInt(3, getTipo_usuario());
@@ -92,6 +87,11 @@ public class usuario {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
         }
+        
+        
+    }
+    
+   
     }
 
 }
