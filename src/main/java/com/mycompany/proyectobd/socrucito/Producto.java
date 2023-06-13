@@ -6,6 +6,8 @@ package com.mycompany.proyectobd.socrucito;
 
 import com.mycompany.proyectobd.Conexion;
 import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ public class Producto {
     private String descripcionProducto;
     private float precioProducto;
     private int cantidadProducto;
+    private int cantidadVendida;
 
     public Producto(String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
         this.nombreProducto = nombre_producto;
@@ -73,6 +76,14 @@ public class Producto {
 
     public void setCantidadProducto(int cantidadProducto) {
         this.cantidadProducto = cantidadProducto;
+    }
+    
+    public void setCantidadVendidad(int cantidadVendida) {
+        this.cantidadVendida = cantidadVendida;
+    }
+    
+    public int getCantidadVendida() {
+        return this.cantidadVendida;
     }
     
     public void guardarProducto(JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
@@ -196,6 +207,29 @@ public class Producto {
             cs.setString(1, cantidadComprada.toString());
             cs.setString(2, Integer.toString(getIdProducto()));
             JOptionPane.showMessageDialog(null, "Se actualizo la cantidad del producto");
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void cobrarProducto(JTextField idProducto, JTextField cantidadComprada) {
+        int productoId = Integer.parseInt(idProducto.getText());
+        int cantidad = Integer.parseInt(cantidadComprada.getText());
+        Conexion conec = new Conexion();
+        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE productos.id_producto = ?;";
+        try {
+            Connection conexion = conec.establecerConexion();
+            PreparedStatement ps = conexion.prepareStatement(consulta);
+            ps.setInt(1, cantidad);
+            ps.setInt(2, productoId);
+            int filasActualizadas = ps.executeUpdate();
+            if(filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puso realizar el cobro");
+            }
+            ps.close();
+            conexion.close();
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
