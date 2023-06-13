@@ -8,7 +8,11 @@ import com.mysql.cj.jdbc.Driver;
 public class Conexion {
     Connection conectar = null;
     String usuario = "root";
+<<<<<<< HEAD
     String contrasenia = "";
+=======
+    String contrasenia = "mr.robot";
+>>>>>>> main
     String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "3036";

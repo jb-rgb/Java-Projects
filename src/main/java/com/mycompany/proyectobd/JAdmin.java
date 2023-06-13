@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectobd;
+import com.mycompany.proyectobd.leo.usuario;
+import com.mycompany.proyectobd.leo.usuario_frame;
+
+
 
 /**
  *
@@ -27,58 +31,88 @@ public class JAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jLabel_nombreUsuario = new javax.swing.JLabel();
+        jPanel_navegador = new javax.swing.JPanel();
+        jButton_ingresarUsuario = new javax.swing.JButton();
+        jButton_CrearEvento = new javax.swing.JButton();
+        jButton_ingresarUsuario2 = new javax.swing.JButton();
+        jLabel_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 51));
+        jLabel_nombreUsuario.setFont(new java.awt.Font("OCR A Extended", 1, 11)); // NOI18N
+        jLabel_nombreUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel_nombreUsuario.setText("jLabel1");
+        getContentPane().add(jLabel_nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("SOY ADMIN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel_navegador.setBackground(new java.awt.Color(102, 102, 255));
+
+        jButton_ingresarUsuario.setText("Ingresar Usuario");
+        jButton_ingresarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_ingresarUsuarioActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(173, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+        jButton_CrearEvento.setText("Nuevo evento");
+        jButton_CrearEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearEventoActionPerformed(evt);
+            }
+        });
+
+        jButton_ingresarUsuario2.setText("Ingresar Beca");
+        jButton_ingresarUsuario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ingresarUsuario2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_navegadorLayout = new javax.swing.GroupLayout(jPanel_navegador);
+        jPanel_navegador.setLayout(jPanel_navegadorLayout);
+        jPanel_navegadorLayout.setHorizontalGroup(
+            jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_navegadorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButton_ingresarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton_CrearEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+        jPanel_navegadorLayout.setVerticalGroup(
+            jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_navegadorLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_ingresarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_CrearEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel_navegador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 380));
+        getContentPane().add(jLabel_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 628, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        login l = new login();
-        l.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton_ingresarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarUsuarioActionPerformed
+        // TODO add your handling code here:
+       //llamar al jframe de ingresar usuario 
+       usuario_frame interface_Usuario = new usuario_frame();
+       interface_Usuario.setVisible(true);
+    }//GEN-LAST:event_jButton_ingresarUsuarioActionPerformed
+
+    private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_CrearEventoActionPerformed
+
+    private void jButton_ingresarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarUsuario2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_ingresarUsuario2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +150,11 @@ public class JAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton_CrearEvento;
+    private javax.swing.JButton jButton_ingresarUsuario;
+    private javax.swing.JButton jButton_ingresarUsuario2;
+    private javax.swing.JLabel jLabel_fondo;
+    private javax.swing.JLabel jLabel_nombreUsuario;
+    private javax.swing.JPanel jPanel_navegador;
     // End of variables declaration//GEN-END:variables
 }
