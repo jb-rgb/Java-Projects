@@ -236,3 +236,27 @@ public class Producto {
         }
     }
 }
+/*
+    public void cobrarAlimento(JTextField idAlimento, JTextField cantidadAlimento) {
+        int AlimentoId = Integer.parseInt(idAlimento.getText());
+        int cantidad = Integer.parseInt(cantidadAlimento.getText());
+        Conexion conec = new Conexion();
+       // Consulta para agregar alimento vendido String incremento = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE productos.id_producto = ?;";
+        try {
+            Connection conexion = conec.establecerConexion();
+            PreparedStatement ps = conexion.prepareStatement(consulta);
+            ps.setInt(1, cantidad);
+            ps.setInt(2, AlimentoId);
+            int filasActualizadas = ps.executeUpdate();
+            if(filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puso realizar el cobro");
+            }
+            ps.close();
+            conexion.close();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+}*/
