@@ -5,6 +5,7 @@ public class Main {
         login l = new login();
         l.setVisible(true);
     }
+    
 }
 // EL leo se la come
 // puto

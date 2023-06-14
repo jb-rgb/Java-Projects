@@ -24,6 +24,7 @@ public class Evento {
     String descripcionEvento;
     String fechaEvento;
    String lugarEvento;
+   int numeroPlatillos;
    int menuEvento;
     
     
@@ -34,7 +35,7 @@ public class Evento {
      this.descripcionEvento = "";
      this.fechaEvento = null;
      this.lugarEvento = "";
-   
+     this.numeroPlatillos=0;
      this.menuEvento = 0;
         
     }
@@ -44,6 +45,8 @@ public class Evento {
         setNombre_Evento(nombreEvento_recibido.getText());
         setDescripcion_Evento(descripcionEvento_recibido.getText());
         setLugar_Evento(lugarEvento_recibido.getText());
+        
+        
         setFecha_Evento(fechaEvento_recibido.getText());
         setMenu_Evento(menuEvento_recibido);
           Conexion coneccion = new Conexion();
