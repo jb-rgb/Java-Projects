@@ -332,9 +332,9 @@ public class Alumno {
             cs.setString(3, getFecha());
             cs.setString(4, getTipo());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "USUARIO INGRESADO CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
+            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR DE MANERA CORRECTAMENTE" + e.toString());
         }
     }
     public void listar_becas(JComboBox comboBox) {

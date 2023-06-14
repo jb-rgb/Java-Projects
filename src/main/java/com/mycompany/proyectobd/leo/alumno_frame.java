@@ -311,8 +311,12 @@ public class alumno_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Alumno alumnos = new Alumno();
-        alumnos.research(tabla_alumnos, jTextField1_matricula);
+        if (!jTextField1_matricula.getText().isEmpty()) {
+            Alumno alumnos = new Alumno();
+            alumnos.research(tabla_alumnos, jTextField1_matricula);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa por lo menos un digito");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
