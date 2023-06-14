@@ -6,18 +6,26 @@ import javax.swing.JOptionPane;
 import com.mysql.cj.jdbc.Driver;
 
 public class Conexion {
+<<<<<<< HEAD
+     Connection conectar = null;
+    String usuario = "root";
+    String contrasenia = "";
+=======
     Connection conectar = null;
     String usuario = "root";
     String contrasenia = "mr.robot";
+>>>>>>> main
     String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "3036";
     String cadena = "jdbc:mysql://localhost:3306/cafeteria?zeroDateTimeBehavior=CONVERT_TO_NULL";
+<<<<<<< HEAD
+=======
     
+>>>>>>> main
     public Connection establecerConexion(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             conectar = DriverManager.getConnection(cadena, usuario, contrasenia);
             //JOptionPane.showMessageDialog(null, "Se conectó correctamente a la base de datos");
         }catch(Exception e){

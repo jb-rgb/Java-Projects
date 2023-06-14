@@ -61,6 +61,12 @@ public class agregar_alumno extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de beca");
 
+        jComboBox1_beca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1_becaMouseClicked(evt);
+            }
+        });
+
         jToggleButton1.setText("Agregar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +141,10 @@ public class agregar_alumno extends javax.swing.JFrame {
         alumno_frame al = new alumno_frame();
         al.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jComboBox1_becaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1_becaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1_becaMouseClicked
 
     /**
      * @param args the command line arguments
