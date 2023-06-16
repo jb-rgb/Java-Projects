@@ -61,6 +61,12 @@ public class agregar_alumno extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de beca");
 
+        jComboBox1_beca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1_becaMouseClicked(evt);
+            }
+        });
+
         jToggleButton1.setText("Agregar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,9 +114,9 @@ public class agregar_alumno extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1_beca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jToggleButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -129,12 +135,16 @@ public class agregar_alumno extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1_nombreActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Alumno alo = new Alumno();
-        alo.insertar_alumno(jTextField1_nombre,  jTextField1_matricula, jComboBox1_beca.getSelectedIndex());
+        Alumno alumno1 = new Alumno();
+        alumno1.insertarAlumno(jTextField1_nombre,  jTextField1_matricula, jComboBox1_beca.getSelectedIndex());
         this.setVisible(false);
         alumno_frame al = new alumno_frame();
         al.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jComboBox1_becaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1_becaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1_becaMouseClicked
 
     /**
      * @param args the command line arguments

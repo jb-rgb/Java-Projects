@@ -25,6 +25,11 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE140</version>
         </dependency>
+        <dependency>
+            <groupId>esItext.library</groupId>
+            <artifactId>DDR-library</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     
     <properties>

@@ -31,16 +31,16 @@ public class Cverificacion {
                
                 if(rol==3){
                   System.out.println("es dueño");
-                  JDueño jd = new JDueño();
-                  jd.setVisible(true);
+                  JDueño dueno = new JDueño();
+                  dueno.setVisible(true);
                 }else if(rol==2){
                    System.out.println("es admin");
-                   JAdmin ja = new JAdmin();
-                   ja.setVisible(true);
+                   JAdmin administrador = new JAdmin();
+                   administrador.setVisible(true);
                 }else if(rol==1){
                      System.out.println("es vendedor");
-                     JVendedor jv = new JVendedor();
-                     jv.setVisible(true);
+                     JVendedor vendedor = new JVendedor();
+                     vendedor.setVisible(true);
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"No existe el usuario");

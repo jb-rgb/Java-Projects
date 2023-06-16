@@ -19,46 +19,51 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Evento {
     
-    int id;
+    int id_evento;
      String nombreEvento;
     String descripcionEvento;
     String fechaEvento;
    String lugarEvento;
    int numeroPlatillos;
-   int menuEvento;
-    
+   
     
     
      public Evento() {
-     this.id = 0;
+     this.id_evento = 0;
      this.nombreEvento = "";
      this.descripcionEvento = "";
      this.fechaEvento = null;
      this.lugarEvento = "";
      this.numeroPlatillos=0;
-     this.menuEvento = 0;
+
         
     }
     
     public void guardarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido, int menuEvento_recibido) {
        
-        setNombre_Evento(nombreEvento_recibido.getText());
-        setDescripcion_Evento(descripcionEvento_recibido.getText());
-        setLugar_Evento(lugarEvento_recibido.getText());
-        
-        
-        setFecha_Evento(fechaEvento_recibido.getText());
-        setMenu_Evento(menuEvento_recibido);
+        String nombre_evento= nombreEvento_recibido.getText();
+        String descripcion_evento= descripcionEvento_recibido.getText();
+        String lugar_evento= lugarEvento_recibido.getText();
+        String fecha_evento= fechaEvento_recibido.getText();
+        if (nombre_evento.isEmpty() || descripcion_evento.isEmpty() || lugar_evento.isEmpty() || fecha_evento.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }else{
+            setNombre_Evento(nombre_evento);
+        setDescripcion_Evento(descripcion_evento);
+        setLugar_Evento(lugar_evento);
+        setFecha_Evento(fecha_evento);
+     
           Conexion coneccion = new Conexion();
           
-           String consulta=" INSERT INTO eventos(nombre,fecha,descripcion,lugar,menuEvento) VALUES (?,?,?,?,?);" ;
+           String consulta=" INSERT INTO eventos(nombre_evento,fecha_evento,descripcion_evento,lugar_evento,id_menuEvento) VALUES (?,?,?,?,?);" ;
              try{
                  CallableStatement cs = coneccion.establecerConexion().prepareCall(consulta);
                  cs.setString(1,getNombre_Evento());
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
-                 cs.setInt(5,getMenu_Evento());
+              
     
                  cs.execute();
                  
@@ -66,12 +71,11 @@ public class Evento {
                  
              }catch(Exception e){
                  
-                 JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR el evento CORRECTAMENTE"+e.toString());
+                 JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR EL EVENTO"+e.toString());
              }
-        
-
-        
-        
+            
+        }
+      
     }
     
     public void actualizarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido, int menuEvento_recibido) {
@@ -79,7 +83,6 @@ public class Evento {
         setDescripcion_Evento(descripcionEvento_recibido.getText());
         setLugar_Evento(lugarEvento_recibido.getText());
         setFecha_Evento(fechaEvento_recibido.getText());
-        setMenu_Evento(menuEvento_recibido);
         Conexion coneccion = new Conexion();
           
            String consulta="UPDATE eventos SET (nombre,fecha,descripcion,lugar,menuEvento) VALUES (?,?,?,?,?);" ;
@@ -89,7 +92,6 @@ public class Evento {
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
-                 cs.setInt(5,getMenu_Evento());
     
                  cs.execute();
                  
@@ -124,9 +126,9 @@ public class Evento {
 
     }
     
-    public void selecionaEvento(JTable tablaRecibida ,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido, int menuEvento_recibido){
+    public void selecionaEvento(JTable tablaRecibida ,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido, JTextField menuEvento_recibido){
         
-        
+       //  menuEvento_recibido.getValueAt(fila,4);
         try{
             int fila = tablaRecibida.getSelectedRow();
             
@@ -135,7 +137,6 @@ public class Evento {
                 descripcionEvento_recibido.setText(tablaRecibida.getValueAt(fila, 1).toString());
                  lugarEvento_recibido.setText(tablaRecibida.getValueAt(fila, 2).toString());
                  fechaEvento_recibido.setText(tablaRecibida.getValueAt(fila, 3).toString());
-                //menuEvento_recibido.setText(tablaRecibida.getValueAt(fila, 4));
                 
                 
             }else{
@@ -146,6 +147,16 @@ public class Evento {
             JOptionPane.showMessageDialog(null, "NO SE PUDO SELECCIONAR LA FILA DESEADA"+e.toString());
         }
     }
+    
+     public void clear(JTable tabla_alumnos, JTextField jTextField1_id, JTextField jTextField1_nombre,
+            JTextField jTextField1_matricula, JTextField jTextField1_Faltas, JTextField jTextField1_beca) {
+        jTextField1_id.setText(" ");
+        jTextField1_nombre.setText(" ");
+        jTextField1_matricula.setText(" ");
+        jTextField1_Faltas.setText(" ");
+        jTextField1_beca.setText(" ");
+    }
+
     
     public void listarEventos(JTable paraTotalDeEventos){
               Conexion coneccion = new Conexion();
@@ -159,7 +170,7 @@ public class Evento {
         
         paraTotalDeEventos.setModel(modelo);
         
-        sql = "select nickname,email,nombre,fecha_nac,telefono,plataforma from eventos;";
+        sql = "select nombre_evento,fecha_evento,descripcion_evento,lugar_evento,id_menuEvento from eventos;";
          String [] datos = new String[4];
         
         Statement st;
@@ -187,24 +198,16 @@ public class Evento {
         }
     }
     
-    public Evento obtener_por_id_Evento(int id) {
-        // Lógica para obtener el evento por su ID de la base de datos
-        return null;
-    }
-    
-    public Evento[] obtener_por_fecha(Date fecha) {
-        // Lógica para obtener los eventos por su fecha de la base de datos
-        return null;
-    }
+  
     
     // Getters y setters
     
     public int getId_Evento() {
-        return id;
+        return id_evento;
     }
     
     public void setId_Evento(int id) {
-        this.id = id;
+        this.id_evento = id;
     }
     
     public String getNombre_Evento() {
@@ -241,14 +244,7 @@ public class Evento {
     
   
     
-    public int getMenu_Evento() {
-        return menuEvento;
-    }
-    
-    public void setMenu_Evento(int menu) {
-        this.menuEvento = menu;
-    }
-    
+
     
    
 }

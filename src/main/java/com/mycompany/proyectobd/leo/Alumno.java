@@ -21,7 +21,49 @@ public class Alumno {
     private String matricula; // matricula del alumno
     private int faltas; // conteo de cuantas faltas lleva
     private int id_beca; // beca en la que esta asignado
+    
+    //variables para poder agregar las asistencias
+    private String fecha;
+    private String asistencia;
+    private int id_alumno_asistencia;
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    private String tipo;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getAsistencia() {
+        return asistencia;
+    }
+
+    public void setAsistencia(String asistencia) {
+        this.asistencia = asistencia;
+    }
+
+    public int getId_alumno_asistencia() {
+        return id_alumno_asistencia;
+    }
+
+    public void setId_alumno_asistencia(int id_alumno_asistencia) {
+        this.id_alumno_asistencia = id_alumno_asistencia;
+    }
+
+ 
+    
+
+          
     public int getId_alumno() {
         return id_alumno;
     }
@@ -95,8 +137,80 @@ public class Alumno {
         }
 
     }
+    
+    public void research(JTable tabla_alumnos, JTextField jTextField1_nombre) {
+    Conexion con = new Conexion();
+    DefaultTableModel modelo = new DefaultTableModel();
 
-    public void seleccionar_usuario(JTable tabla_alumnos, JTextField jTextField1_id, JTextField jTextField1_nombre,
+    String sql = "";
+    modelo.addColumn("Id alumno");
+    modelo.addColumn("Nombre del alumno");
+    modelo.addColumn("Matricula");
+    modelo.addColumn("Faltas");
+    modelo.addColumn("Tipo de beca");
+
+    tabla_alumnos.setModel(modelo);
+    
+    // Obtener el texto ingresado en el jTextField1_nombre
+    String nombreBusqueda = jTextField1_nombre.getText();
+    
+    // Consulta SQL modificada para incluir la búsqueda por nombre
+    sql = "SELECT id_alumno, nombre_alumno, matricula, faltas, id_beca FROM alumnos WHERE matricula LIKE '%" + nombreBusqueda + "%';";
+
+    String[] datos = new String[5];
+    Statement st;
+    try {
+        st = con.establecerConexion().createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            modelo.addRow(datos);
+        }
+        tabla_alumnos.setModel(modelo);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+   }
+
+    
+    public void list_asistencia(JTable tabla_asistencia, int id_alumno, String matricula, String nombre) {
+        Conexion con = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        String sql = "";
+        modelo.addColumn("Nombre del alumno");
+        modelo.addColumn("Matricula");
+        modelo.addColumn("Fecha"); 
+        modelo.addColumn("Asistencia");
+        modelo.addColumn("Alimento");
+       
+        tabla_asistencia.setModel(modelo);
+        sql = "select fecha,asistio,tipo from asitencia where id_alumno = "+id_alumno+";"; // el texto de la consola
+
+        String[] datos = new String[5];
+        Statement st;
+        try {
+            st = con.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = nombre;
+                datos[1] = matricula;
+                datos[2] = rs.getString(1);
+                datos[3] = rs.getString(2);
+                datos[4] = rs.getString(3);
+                modelo.addRow(datos);
+            }
+            tabla_asistencia.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+
+    public void seleccionarAlumno(JTable tabla_alumnos, JTextField jTextField1_id, JTextField jTextField1_nombre,
             JTextField jTextField1_matricula, JTextField jTextField1_Faltas, JTextField jTextField1_beca) {
         try {
             int fila = tabla_alumnos.getSelectedRow();
@@ -131,12 +245,17 @@ public class Alumno {
         jTextField1_beca.setText(" ");
     }
 
-    public void insertar_alumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) {
+    public void insertarAlumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) {
         Conexion objetoConexion = new Conexion();
-        setNombre_alumno(jTextField1_nombre.getText());
-        setMatricula(jTextField1_matricula.getText());
+        String nombreAlumno =jTextField1_nombre.getText();        
+        String matriculaAlumno = jTextField1_matricula.getText() ;
+        
+        if(nombreAlumno.isEmpty() && matriculaAlumno.isEmpty()){ //validar que no se ingreso en blanco
+             setNombre_alumno(nombreAlumno);
+        setMatricula(matriculaAlumno);
         setFaltas(0);
         setId_beca(comboBox + 1);
+        
         String consulta = "INSERT INTO alumnos (nombre_alumno, matricula, faltas, id_beca) VALUES (?,?,?,?);";
         try {
             CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
@@ -145,10 +264,14 @@ public class Alumno {
             cs.setInt(3, getFaltas());
             cs.setLong(4, getId_beca());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "USUARIO INGRESADO CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "BECARIO INGRESADO CORRECTAMENTE");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
+            JOptionPane.showMessageDialog(null, "NO SE PUDO BECARIO AL USUARIO CORRECTAMENTE" + e.toString());
         }
+            
+        }
+        
+       
     }
 
     public void modificar_alumno(JTextField jTextField1_id, JTextField jTextField1_nombre,
@@ -203,7 +326,26 @@ public class Alumno {
         }
 
     }
-
+      public void insertar_asistencia(JTextField jTextField1_fecha, String jComboBox1_opciones, String jComboBox1_comida, String matricula, int id_alumno) {
+        Conexion objetoConexion = new Conexion();
+        setFecha(jTextField1_fecha.getText());
+        setTipo(jComboBox1_comida);
+        setAsistencia(jComboBox1_opciones);
+        setMatricula(matricula);
+        setId_alumno_asistencia(id_alumno);
+        String consulta = "INSERT INTO asitencia (id_alumno, asistio, fecha, tipo) VALUES (?,?,?,?);";
+        try {
+            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+            cs.setInt(1, getId_alumno_asistencia());
+            cs.setString(2, getAsistencia());
+            cs.setString(3, getFecha());
+            cs.setString(4, getTipo());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR DE MANERA CORRECTAMENTE" + e.toString());
+        }
+    }
     public void listar_becas(JComboBox comboBox) {
         // Obtener los datos de la tabla "becas"
         Conexion con = new Conexion();
