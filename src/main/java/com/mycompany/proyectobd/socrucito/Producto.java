@@ -31,6 +31,8 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
+<<<<<<< HEAD
+=======
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
@@ -49,6 +51,7 @@ public class Producto {
         
         
     }
+>>>>>>> main
     
     public int getIdProducto() {
         return idProducto;
