@@ -4,6 +4,14 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyectobd;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
+import java.io.*; 
+import com.mycompany.proyectobd.Conexion;
+import javax.swing.*;
+import java.sql.*;
 //import com.itextpdf.text.Document;
 //import com.itextpdf.text.DocumentException;
 //import com.itextpdf.text.pdf.PdfWriter;
@@ -131,48 +139,47 @@ public class reportes extends javax.swing.JFrame {
 
     private void jButton_generarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generarReporteActionPerformed
         // TODO add your handling code here:
-        String tipo_Reporte= jComboBox_tipoReporte.getSelectedItem().toString();
-        String tiempo= jComboBox_Tiempo.getSelectedItem().toString();
-        
-        /* 
-        Document documento = new Document;
-        
-        try{
-            String ruta = System.getPropert("user.name");
-            PdfWriter.getInstance(documento,new FileOutputStream(ruta+"/Desktop/Reporte_Ventas.pdf"));       } 
-            documento.open();
-        
-            PdfPTable table = new PdfPTable(3);
-            tabla.addCell("Repore");
-            tabla.addCell("Tiempo");
-            tabla.addCell("cantidad vendia");
-        
-        Conexion objetoConexion = new Conexion();
-           
-        String IngresarUsuarioConsulta = "INSERT INTO cafeteria.usuario (nombre_usuario, contrasena_usuario, tipo_usuario, correo_usuario) VALUES (?, ?, ?, ?);";
-          Statement st;
-        try{
-        
-             
-             
-        st = cj.establecerConexion().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                tabla.addCell(rs.getString(1));    
-                tabla.addCell(rs.getString(2)); 
-                tabla.addCell(rs.getString(3)); 
-                documento.add(tabla);
+        String tipo_Reporte = jComboBox_tipoReporte.getSelectedItem().toString();
+        String tiempo = jComboBox_Tiempo.getSelectedItem().toString();
+        Document documento = new Document();
+        if (!(tipo_Reporte.isEmpty() && tiempo.isEmpty())) {
+            try {
+                String ruta = System.getProperty("user.name");
+                PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Ventas.pdf"));
+                documento.open();
+                PdfPTable tabla = new PdfPTable(3);
+                tabla.addCell("Repore");
+                tabla.addCell("Tiempo");
+                tabla.addCell("cantidad vendida");
+                Conexion objetoConexion = new Conexion();
+
+                String Consulta = "Select * from detalleVenta";
+                Statement st;
+                try {
+
+                    st = objetoConexion.establecerConexion().createStatement();
+                    ResultSet rs = st.executeQuery(Consulta);
+                    while (rs.next()) {
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        documento.add(tabla);
+                    }
+
+                } catch (DocumentException | SQLException e) {
+                    JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                }
+
+                documento.close();
+                JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+
+            } catch (DocumentException | FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE");
             }
-            }cath(DocumentException | SQLException e ){
-                
-               }
-       documento.close();
-        JOptionPane.showMessageDialog(null,"Reporte creado");
-        catch{
-        
+
         }
-        
-        */
+
+             
     }//GEN-LAST:event_jButton_generarReporteActionPerformed
 
     /**

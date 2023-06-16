@@ -10,6 +10,17 @@ public class Conexion {
      Connection conectar = null;
     String usuario = "root";
     String contrasenia = "";
+<<<<<<< HEAD
+=======
+=======
+    Connection conectar = null;
+    String usuario = "root";
+<<<<<<< HEAD
+    String contrasenia = "";
+=======
+    String contrasenia = "mr.robot";
+>>>>>>> main
+>>>>>>> main
     String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "3036";
