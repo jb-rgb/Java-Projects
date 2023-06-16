@@ -30,13 +30,6 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
-
-    public Producto(String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
-        this.nombreProducto = nombre_producto;
-        this.descripcionProducto = descripcion_producto;
-        this.precioProducto = precio_producto;
-        this.cantidadProducto = cantidad_producto;
-    }
     
     public int getIdProducto() {
         return idProducto;
