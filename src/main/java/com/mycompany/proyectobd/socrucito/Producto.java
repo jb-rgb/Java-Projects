@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,12 +31,23 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
+    private int precioDesayunoA;
+    private int precioDesayunoB;
+    private int precioComidaA;
+    private int precioComidaB;
 
-    public Producto(String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
+    public Producto(int precio_comidaB,int precio_comidaA,int precio_desayunoB,int precio_desayunoA,String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
         this.nombreProducto = nombre_producto;
         this.descripcionProducto = descripcion_producto;
         this.precioProducto = precio_producto;
         this.cantidadProducto = cantidad_producto;
+        this.precioComidaA= 43;
+        this.precioComidaB= 48;
+        this.precioDesayunoA = 40;
+        this.precioDesayunoB=45;
+        
+        
+        
     }
     
     public int getIdProducto() {
@@ -234,4 +246,63 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
+        
+    public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<String> comboBox2, JTextField cantidadAlimento) {
+    String tipoAlimento = (String) comboBox1.getSelectedItem();
+    int cantidad = Integer.parseInt(cantidadAlimento.getText());
+    Conexion conec = new Conexion();
+    String columnaAlimento = "";
+
+    switch (tipoAlimento) {
+        case "Desayuno A":
+            columnaAlimento = "Desayuno_A";
+            break;
+        case "Desayuno B":
+            columnaAlimento = "Desayuno_B";
+            break;
+        case "Comida A":
+            columnaAlimento = "Comida_A";
+            break;
+        case "Comida B":
+            columnaAlimento = "Comida_B";
+            break;
+    }
+
+    String consultaCantidad = "SELECT " + columnaAlimento + " FROM productos;";
+    String consultaActualizacion = "UPDATE productos SET " + columnaAlimento + " = ?;";
+
+    try {
+        Connection conexion = conec.establecerConexion();
+
+        // Obtener la cantidad actual
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(consultaCantidad);
+
+        int cantidadActual = 0;
+        if (rs.next()) {
+            cantidadActual = rs.getInt(columnaAlimento);
+        }
+
+        // Sumar la cantidad seleccionada
+        int nuevaCantidad = cantidadActual + cantidad;
+
+        // Actualizar la cantidad en la base de datos
+        PreparedStatement ps = conexion.prepareStatement(consultaActualizacion);
+        ps.setInt(1, nuevaCantidad);
+        int filasActualizadas = ps.executeUpdate();
+
+        if (filasActualizadas > 0) {
+            JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo realizar el cobro");
+        }
+
+        ps.close();
+        stmt.close();
+        conexion.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
 }

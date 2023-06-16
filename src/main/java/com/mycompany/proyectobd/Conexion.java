@@ -13,6 +13,9 @@ public class Conexion {
 =======
     Connection conectar = null;
     String usuario = "root";
+<<<<<<< HEAD
+    String contrasenia = "";
+=======
     String contrasenia = "mr.robot";
 >>>>>>> main
     String bd = "cafeteria";
