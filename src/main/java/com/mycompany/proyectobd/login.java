@@ -122,9 +122,9 @@ public class login extends javax.swing.JFrame {
          String correo = jTextField1.getText();
          String password = jTextField2.getText();
          
-         Cverificacion  b = new Cverificacion();
-         
-         b.Validar(correo,password);
+         Cverificacion  validacion= new Cverificacion();
+           
+         validacion.Validar(correo,password);
          this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
