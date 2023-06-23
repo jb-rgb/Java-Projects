@@ -28,34 +28,70 @@ public class JDueño extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jButton_generarReporte = new javax.swing.JButton();
+        jButton_agregarEvento = new javax.swing.JButton();
+        jButton_seguimientoBeca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jButton_generarReporte.setText("generar reporte");
+        jButton_generarReporte.setText("Generar reporte");
         jButton_generarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_generarReporteActionPerformed(evt);
             }
         });
 
+        jButton_agregarEvento.setText("Agregar evento");
+        jButton_agregarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_agregarEventoActionPerformed(evt);
+            }
+        });
+
+        jButton_seguimientoBeca.setText("Seguimiento beca");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jButton_generarReporte)
+                .addGap(62, 62, 62)
+                .addComponent(jButton_agregarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jButton_seguimientoBeca)
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_generarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_agregarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_seguimientoBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButton_generarReporte)
-                .addContainerGap(665, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton_generarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,7 +104,7 @@ public class JDueño extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 394, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,6 +115,10 @@ public class JDueño extends javax.swing.JFrame {
         reportes interface_reporte = new reportes();
         interface_reporte.setVisible(true);
     }//GEN-LAST:event_jButton_generarReporteActionPerformed
+
+    private void jButton_agregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregarEventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_agregarEventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +157,10 @@ public class JDueño extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_agregarEvento;
     private javax.swing.JButton jButton_generarReporte;
+    private javax.swing.JButton jButton_seguimientoBeca;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

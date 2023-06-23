@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -68,29 +71,17 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxMenu" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextLugarEvento" pref="130" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextDescripcionEvento" pref="130" max="32767" attributes="0"/>
-                                          <Component id="jTextNombreEvento" max="32767" attributes="0"/>
-                                          <Component id="jTextFechaEvento" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                                  <Component id="jButtonCrearEvento" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextLugarEvento" pref="130" max="32767" attributes="0"/>
+                              <Component id="jTextDescripcionEvento" pref="130" max="32767" attributes="0"/>
+                              <Component id="jTextNombreEvento" max="32767" attributes="0"/>
+                              <Component id="jTextFechaEvento" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
+                          <Component id="jButtonCrearEvento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -122,12 +113,7 @@
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextLugarEvento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxMenu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -156,11 +142,6 @@
             <Property name="text" type="java.lang.String" value="Descripcion del evento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Menu evento:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="jTextNombreEvento">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNombreEventoActionPerformed"/>
@@ -177,22 +158,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCrearEventoActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBoxMenu">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Menu 1 "/>
-                <StringItem index="1" value="Menu 2"/>
-                <StringItem index="2" value="Menu 3 "/>
-                <StringItem index="3" value="Menu 4"/>
-                <StringItem index="4" value=" "/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
