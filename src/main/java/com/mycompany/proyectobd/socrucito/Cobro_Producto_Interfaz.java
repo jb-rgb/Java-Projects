@@ -117,13 +117,13 @@ public class Cobro_Producto_Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JTextField textField = new JTextField();
-        Producto producto1 = new Producto(1, "Galletas", "Galletas con chispas de chocolate", (float)12.5, 3);
+        //Producto producto1 = new Producto(1, "Galletas", "Galletas con chispas de chocolate", (float)12.5, 3);
         /* JOptionPane.showMessageDialog(null, "Pruducto 1 \n Nombre: " + producto1.getNombreProducto() + 
                 "\n Descripción: " + producto1.getDescripcionProducto() +
                 "\n Precio: " + producto1.getPrecioProducto() +
                 "\n Cantidad a comprar: " + producto1.getCantidadProducto()); 
         */
-        producto1.cobrarProducto(textField, producto1.getIdProducto(), textField, producto1.getCantidadProducto());
+        //producto1.cobrarProducto(textField, producto1.getIdProducto(), textField, producto1.getCantidadProducto());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
