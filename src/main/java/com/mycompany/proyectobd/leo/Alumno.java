@@ -210,7 +210,7 @@ public class Alumno {
         }
     }
 
-    public void seleccionar_usuario(JTable tabla_alumnos, JTextField jTextField1_id, JTextField jTextField1_nombre,
+    public void seleccionarAlumno(JTable tabla_alumnos, JTextField jTextField1_id, JTextField jTextField1_nombre,
             JTextField jTextField1_matricula, JTextField jTextField1_Faltas, JTextField jTextField1_beca) {
         try {
             int fila = tabla_alumnos.getSelectedRow();
@@ -245,12 +245,17 @@ public class Alumno {
         jTextField1_beca.setText(" ");
     }
 
-    public void insertar_alumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) {
+    public void insertarAlumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) {
         Conexion objetoConexion = new Conexion();
-        setNombre_alumno(jTextField1_nombre.getText());
-        setMatricula(jTextField1_matricula.getText());
+        String nombreAlumno =jTextField1_nombre.getText();        
+        String matriculaAlumno = jTextField1_matricula.getText() ;
+        
+        if(nombreAlumno.isEmpty() && matriculaAlumno.isEmpty()){ //validar que no se ingreso en blanco
+             setNombre_alumno(nombreAlumno);
+        setMatricula(matriculaAlumno);
         setFaltas(0);
         setId_beca(comboBox + 1);
+        
         String consulta = "INSERT INTO alumnos (nombre_alumno, matricula, faltas, id_beca) VALUES (?,?,?,?);";
         try {
             CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
@@ -259,10 +264,14 @@ public class Alumno {
             cs.setInt(3, getFaltas());
             cs.setLong(4, getId_beca());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "USUARIO INGRESADO CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "BECARIO INGRESADO CORRECTAMENTE");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
+            JOptionPane.showMessageDialog(null, "NO SE PUDO BECARIO AL USUARIO CORRECTAMENTE" + e.toString());
         }
+            
+        }
+        
+       
     }
 
     public void modificar_alumno(JTextField jTextField1_id, JTextField jTextField1_nombre,
