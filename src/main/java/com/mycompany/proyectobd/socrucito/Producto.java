@@ -103,22 +103,19 @@ public class Producto {
         return this.cantidadVendida;
     }
     
-    public void guardarProducto(JTextField id_producto, JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
-        String idProductoString = id_producto.getText();
-        BigInteger idProductoBigInt = new BigInteger(idProductoString);
+    public void guardarProducto(JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
         setNombreProducto(nombre_producto.getText());
         setDescripcionProducto(descripcion_producto.getText());
         setPrecioProducto(Float.parseFloat(precio_producto.getText()));
         setCantidadProducto(Integer.parseInt(cantidad_producto.getText()));
         Conexion conec = new Conexion();
-        String consulta = "INSERT INTO productos(id_producto, nombre_producto, descripcion_producto, precio_producto, cantidad_producto) VALUES (?, ?, ?, ?, ?);";
+        String consulta = "INSERT INTO productos(nombre_producto, descripcion_producto, precio_producto, cantidad_producto) VALUES (?, ?, ?, ?);";
         try {
             CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
-            cs.setBigDecimal(1, new BigDecimal(idProductoBigInt));
-            cs.setString(2, getNombreProducto());
-            cs.setString(3, getDescripcionProducto());
-            cs.setFloat(4, getPrecioProducto());
-            cs.setInt(5, getCantidadProducto());
+            cs.setString(1, getNombreProducto());
+            cs.setString(2, getDescripcionProducto());
+            cs.setFloat(3, getPrecioProducto());
+            cs.setInt(4, getCantidadProducto());
             cs.execute();
             JOptionPane.showMessageDialog(null, "El producto se guardó correctamente");
         } catch(Exception e) {
