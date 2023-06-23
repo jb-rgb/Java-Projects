@@ -52,7 +52,6 @@ com\mycompany\proyectobd\leo\usuario_frame$4.class
 com\mycompany\proyectobd\JDueño$3.class
 com\mycompany\proyectobd\socrucito\Cobro_Producto_Interfaz.class
 com\mycompany\proyectobd\JVendedor$4.class
-.netbeans_automatic_build
 com\mycompany\proyectobd\JAdmin$2.class
 com\mycompany\proyectobd\MenusEvento$5.class
 com\mycompany\proyectobd\Cverificacion.class
@@ -102,6 +101,7 @@ com\mycompany\proyectobd\leo\Alumno.class
 com\mycompany\proyectobd\CrearEvento$1.class
 com\mycompany\proyectobd\jorge\Inventario.class
 com\mycompany\proyectobd\JDueño.class
+com\mycompany\proyectobd\jorge\JProducto$6.class
 com\mycompany\proyectobd\socrucito\Venta.class
 com\mycompany\proyectobd\JAdmin$5.class
 com\mycompany\proyectobd\AgregarMenu$2.class
@@ -118,6 +118,7 @@ com\mycompany\proyectobd\AgregarMenu$1.class
 com\mycompany\proyectobd\socrucito\Cobro_Producto_Interfaz$2.class
 com\mycompany\proyectobd\leo\agregar_alumno$4.class
 com\mycompany\proyectobd\JDueño$1.class
+com\mycompany\proyectobd\jorge\JProducto$7.class
 com\mycompany\proyectobd\leo\usuario_frame$2.class
 com\mycompany\proyectobd\leo\alumno_frame$3.class
 com\mycompany\proyectobd\MenuEvento.class
