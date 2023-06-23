@@ -34,10 +34,7 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
-<<<<<<< HEAD
 
-=======
->>>>>>> main
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
@@ -54,11 +51,7 @@ public class Producto {
         this.precioDesayunoA = 40;
         this.precioDesayunoB = 45;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> main
-    
     public int getIdProducto() {
         return idProducto;
     }

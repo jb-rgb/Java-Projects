@@ -142,24 +142,78 @@ public class reportes extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tipo_Reporte = jComboBox_tipoReporte.getSelectedItem().toString();
         String tiempo = jComboBox_Tiempo.getSelectedItem().toString();
+        String Consulta ="";
         Document documento = new Document();
-        if (!(tipo_Reporte.isEmpty() && tiempo.isEmpty())) {
+        if(tipo_Reporte.compareTo("reporte eventos")==0){
+            if (!(tiempo.isEmpty())) {
+            try {
+                String ruta = System.getProperty("user.home");
+                PdfWriter.getInstance(documento, new FileOutputStream(ruta +"/Desktop/ReporteEventos.pdf"));
+                documento.open();
+                PdfPTable tabla = new PdfPTable(6);
+               tabla.addCell("Tiempo");
+                tabla.addCell("evento");
+                tabla.addCell("lugar");
+                tabla.addCell("menu");
+                tabla.addCell("numero platillos");
+                tabla.addCell("Precio menu");
+                tabla.addCell("Total");
+             
+                Conexion objetoConexion = new Conexion();
+                
+                if(tiempo.compareTo("mes")==0){
+                    System.out.println("INGRESO A MES");
+                     Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos)  FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE MONTH(e.fecha_evento) = MONTH(CURRENT_DATE) AND YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
+                }else if(tiempo.compareTo("año")==0){
+                    Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos) FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE  YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
+                }
+                Statement st1;
+                try {
+                
+                    st1 = objetoConexion.establecerConexion().createStatement();
+                    ResultSet rs = st1.executeQuery(Consulta);
+                    while (rs.next() ) {
+                        tabla.addCell(tiempo);
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        tabla.addCell(rs.getString(4));
+                        tabla.addCell(rs.getString(5));
+                        tabla.addCell(rs.getString(6));
+                        documento.add(tabla);
+                    }
+
+                } catch (DocumentException | SQLException e) {
+                    JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                }
+
+                documento.close();
+                JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+
+            } catch (DocumentException | FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE"+e);
+            }
+
+            
+           
+        }else if(tipo_Reporte.compareTo("reporte ventas")==0){
+            if (!(tiempo.isEmpty())) {
             try {
                 String ruta = System.getProperty("user.name");
-                PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Ventas.pdf"));
+                PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteVentas.pdf"));
                 documento.open();
                 PdfPTable tabla = new PdfPTable(3);
-                tabla.addCell("Repore");
+                tabla.addCell("Reporte");
                 tabla.addCell("Tiempo");
                 tabla.addCell("cantidad vendida");
                 Conexion objetoConexion = new Conexion();
 
-                String Consulta = "Select * from detalleVenta";
+                String Consulta1 = "Select * from eventos";
                 Statement st;
                 try {
 
                     st = objetoConexion.establecerConexion().createStatement();
-                    ResultSet rs = st.executeQuery(Consulta);
+                    ResultSet rs = st.executeQuery(Consulta1);
                     while (rs.next()) {
                         tabla.addCell(rs.getString(1));
                         tabla.addCell(rs.getString(2));
@@ -179,10 +233,12 @@ public class reportes extends javax.swing.JFrame {
             }
 
         }
+            
+        }
 
              
     }//GEN-LAST:event_jButton_generarReporteActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

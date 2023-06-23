@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalTime;
 
 /**
  *
@@ -32,6 +33,9 @@ public class Inventario {
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
+    
+    
+    
     
     public static void actualizarProducto(String nombre, String descripcion, float precio, int cantidad, int idProducto) {
         String consulta = "UPDATE productos SET nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, cantidad_producto = ? WHERE productos.id_producto = ?;";
