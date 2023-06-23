@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyectobd.socrucito;
+import com.mycompany.proyectobd.jorge.Inventario;
 
 import com.mycompany.proyectobd.Conexion;
 import java.sql.CallableStatement;
@@ -10,9 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,25 +35,28 @@ public class Producto {
     private int cantidadProducto;
     private int cantidadVendida;
 <<<<<<< HEAD
+
 =======
+>>>>>>> main
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
     private int precioComidaB;
 
-    public Producto(int precio_comidaB,int precio_comidaA,int precio_desayunoB,int precio_desayunoA,String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
+    public Producto(int id_producto, String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
+        this.idProducto = id_producto;
         this.nombreProducto = nombre_producto;
         this.descripcionProducto = descripcion_producto;
         this.precioProducto = precio_producto;
         this.cantidadProducto = cantidad_producto;
-        this.precioComidaA= 43;
-        this.precioComidaB= 48;
+        this.precioComidaA = 43;
+        this.precioComidaB = 48;
         this.precioDesayunoA = 40;
-        this.precioDesayunoB=45;
-        
-        
-        
+        this.precioDesayunoB = 45;
     }
+<<<<<<< HEAD
+
+=======
 >>>>>>> main
     
     public int getIdProducto() {
@@ -227,22 +233,40 @@ public class Producto {
         }
     }
     
-    public void cobrarProducto(JTextField idProducto, JTextField cantidadComprada) {
-        int productoId = Integer.parseInt(idProducto.getText());
-        int cantidad = Integer.parseInt(cantidadComprada.getText());
+    public void cobrarProducto(JTextField idProducto, int id, JTextField cantidadComprada, int cantidad) {
+        idProducto.setText(String.valueOf(id));
+        cantidadComprada.setText(String.valueOf(cantidad));
+        Inventario inventario = new Inventario();
+        Timer timer = new Timer();      // variable timer
+        long maximumTime = 2 * 60 * 1000;   // Establecer el tiempo máximo de ejecución en 2 minutos
+        long startTime = System.currentTimeMillis();    // Guardamos el tiempo de inicio
         Conexion conec = new Conexion();
-        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE productos.id_producto = ?;";
+        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE id_producto = ?;";
         try {
             Connection conexion = conec.establecerConexion();
             PreparedStatement ps = conexion.prepareStatement(consulta);
+            JOptionPane.showMessageDialog(null, cantidad + ", " + id);
             ps.setInt(1, cantidad);
-            ps.setInt(2, productoId);
+            ps.setInt(2, id);
             int filasActualizadas = ps.executeUpdate();
-            if(filasActualizadas > 0) {
-                JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se puso realizar el cobro");
-            }
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println("Tarea en ejecución");
+                    if(filasActualizadas > 0) {
+                        JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
+                        inventario.reducirInventario();
+                        timer.cancel();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se puso realizar el cobro");
+                        timer.cancel();
+                    }
+                    if(System.currentTimeMillis() - startTime > maximumTime) {
+                        JOptionPane.showMessageDialog(null, "Tiempo limite alcanzado");
+                        timer.cancel();
+                    }
+                }
+            }, 0, 1000);    // Retardo inicial de 0 segundos y repetición cada segundo
             ps.close();
             conexion.close();
         } catch(Exception e) {
