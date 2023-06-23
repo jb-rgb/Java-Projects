@@ -5,7 +5,9 @@
 package com.mycompany.proyectobd;
 import com.mycompany.proyectobd.leo.usuario;
 import com.mycompany.proyectobd.leo.usuario_frame;
+import com.mycompany.proyectobd.leo.alumno_frame;
 
+import com.mycompany.proyectobd.leo.agregar_alumno;
 
 
 /**
@@ -31,27 +33,37 @@ public class JAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel_nombreUsuario = new javax.swing.JLabel();
         jPanel_navegador = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jButton_ingresarUsuario = new javax.swing.JButton();
+        jButton_BecarioNuevo2 = new javax.swing.JButton();
         jButton_CrearEvento = new javax.swing.JButton();
-        jButton_ingresarUsuario2 = new javax.swing.JButton();
+        jButtonAdministrarInventario = new javax.swing.JButton();
+        jButtonSeguimientoBeca = new javax.swing.JButton();
+        jButtonGenrarReporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_nombreUsuario.setFont(new java.awt.Font("OCR A Extended", 1, 11)); // NOI18N
-        jLabel_nombreUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel_nombreUsuario.setText("jLabel1");
-        getContentPane().add(jLabel_nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel_navegador.setBackground(new java.awt.Color(102, 153, 255));
 
-        jPanel_navegador.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setForeground(new java.awt.Color(0, 51, 51));
 
         jButton_ingresarUsuario.setText("Ingresar Usuario");
         jButton_ingresarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ingresarUsuarioActionPerformed(evt);
+            }
+        });
+
+        jButton_BecarioNuevo2.setText("Becario nuevo");
+        jButton_BecarioNuevo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BecarioNuevo2ActionPerformed(evt);
             }
         });
 
@@ -62,39 +74,105 @@ public class JAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton_ingresarUsuario2.setText("Ingresar Beca");
-        jButton_ingresarUsuario2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdministrarInventario.setText("Inventario");
+        jButtonAdministrarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ingresarUsuario2ActionPerformed(evt);
+                jButtonAdministrarInventarioActionPerformed(evt);
             }
         });
+
+        jButtonSeguimientoBeca.setText("Seguimiento beca");
+        jButtonSeguimientoBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSeguimientoBecaActionPerformed(evt);
+            }
+        });
+
+        jButtonGenrarReporte.setText("Generar Reporte ");
+        jButtonGenrarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenrarReporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonAdministrarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_BecarioNuevo2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSeguimientoBeca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_CrearEvento)
+                    .addComponent(jButtonGenrarReporte))
+                .addGap(47, 47, 47))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_ingresarUsuario)
+                    .addComponent(jButton_BecarioNuevo2)
+                    .addComponent(jButton_CrearEvento))
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSeguimientoBeca)
+                    .addComponent(jButtonGenrarReporte)
+                    .addComponent(jButtonAdministrarInventario))
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setText("Administrador ");
 
         javax.swing.GroupLayout jPanel_navegadorLayout = new javax.swing.GroupLayout(jPanel_navegador);
         jPanel_navegador.setLayout(jPanel_navegadorLayout);
         jPanel_navegadorLayout.setHorizontalGroup(
             jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_navegadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton_ingresarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton_CrearEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(189, 189, 189))
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         jPanel_navegadorLayout.setVerticalGroup(
             jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_navegadorLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_ingresarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_CrearEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_navegadorLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel_navegador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 380));
-        getContentPane().add(jLabel_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 628, 380));
+        getContentPane().add(jPanel_navegador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 380));
+        getContentPane().add(jLabel_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,11 +186,41 @@ public class JAdmin extends javax.swing.JFrame {
 
     private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
         // TODO add your handling code here:
+        
+        CrearEvento interfaceNuevoEvento = new CrearEvento();
+        interfaceNuevoEvento.setVisible(true);
+        
     }//GEN-LAST:event_jButton_CrearEventoActionPerformed
 
-    private void jButton_ingresarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarUsuario2ActionPerformed
+    private void jButton_BecarioNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BecarioNuevo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ingresarUsuario2ActionPerformed
+        agregar_alumno NuevoAlumno = new agregar_alumno();
+        NuevoAlumno.setVisible(true);
+        
+    }//GEN-LAST:event_jButton_BecarioNuevo2ActionPerformed
+
+    private void jButtonAdministrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarInventarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAdministrarInventarioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonGenrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenrarReporteActionPerformed
+        // TODO add your handling code here:
+        reportes NuevoReporte = new reportes();
+        NuevoReporte.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButtonGenrarReporteActionPerformed
+
+    private void jButtonSeguimientoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeguimientoBecaActionPerformed
+        // TODO add your handling code here:
+        alumno_frame SeguimientoBeca = new alumno_frame();
+        SeguimientoBeca.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonSeguimientoBecaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,11 +258,16 @@ public class JAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAdministrarInventario;
+    private javax.swing.JButton jButtonGenrarReporte;
+    private javax.swing.JButton jButtonSeguimientoBeca;
+    private javax.swing.JButton jButton_BecarioNuevo2;
     private javax.swing.JButton jButton_CrearEvento;
     private javax.swing.JButton jButton_ingresarUsuario;
-    private javax.swing.JButton jButton_ingresarUsuario2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_fondo;
-    private javax.swing.JLabel jLabel_nombreUsuario;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_navegador;
     // End of variables declaration//GEN-END:variables
 }
