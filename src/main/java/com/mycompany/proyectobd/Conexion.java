@@ -5,6 +5,17 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 public class Conexion {
+<<<<<<< HEAD
+
+     Connection conectar = null;
+    String usuario = "root";
+    String contrasenia = "mr.robot";
+    String bd = "cafeteria";
+    String ip = "localhost";
+    String puerto = "3036";
+    String cadena = "jdbc:mysql://localhost:3306/cafeteria?zeroDateTimeBehavior=CONVERT_TO_NULL";
+
+=======
     Connection conectar = null;
     String usuario = "postgres";
     String contrasenia = "#Jorge4820";
@@ -12,6 +23,7 @@ public class Conexion {
     String ip = "localhost";
     String puerto = "5432";
     String cadena = "jdbc:postgresql://" + ip + ":" + puerto + "/" + bd;
+>>>>>>> main
     
     public Connection establecerConexion(){
         try{
