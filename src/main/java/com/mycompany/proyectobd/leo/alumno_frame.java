@@ -262,12 +262,7 @@ public class alumno_frame extends javax.swing.JFrame {
         jTextField1_id.setEnabled(false);
         Alumno alumnoSelecionado = new Alumno();
         alumnoSelecionado.seleccionarAlumno(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
-<<<<<<< HEAD
-=======
 
-        //alumnoSelecionado.seleccionar_usuario(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
-
->>>>>>> main
     }//GEN-LAST:event_tabla_alumnosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

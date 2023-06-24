@@ -13,11 +13,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-<<<<<<< HEAD
-=======
+
 import java.util.Timer;
 import java.util.TimerTask;
->>>>>>> main
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -39,10 +38,7 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
-<<<<<<< HEAD
 
-=======
->>>>>>> main
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
@@ -68,7 +64,7 @@ public class Producto {
         this.precioDesayunoB = 45;
     }
     */
->>>>>>> main
+
     
     public int getIdProducto() {
         return idProducto;
@@ -306,42 +302,7 @@ public class Producto {
         }
     }
         
-<<<<<<< HEAD
-    public void cobrarAlimento(JComboBox comboBox1, JComboBox comboBox2, JTextField cantidadAlimento) {
-    String tipoAlimento = (String) comboBox1.getSelectedItem();
-    int cantidad = Integer.parseInt(cantidadAlimento.getText());
-    Conexion conec = new Conexion();
-    String columnaAlimento = "";
 
-    switch (tipoAlimento) {
-        case "Desayuno A":
-            columnaAlimento = "Desayuno_A";
-            break;
-        case "Desayuno B":
-            columnaAlimento = "Desayuno_B";
-            break;
-        case "Comida A":
-            columnaAlimento = "Comida_A";
-            break;
-        case "Comida B":
-            columnaAlimento = "Comida_B";
-            break;
-    }
-
-    String consultaCantidad = "SELECT " + columnaAlimento + " FROM productos;";
-    String consultaActualizacion = "UPDATE productos SET " + columnaAlimento + " = ?;";
-
-    try {
-        Connection conexion = conec.establecerConexion();
-
-        // Obtener la cantidad actual
-        Statement stmt = conexion.createStatement();
-        ResultSet rs = stmt.executeQuery(consultaCantidad);
-
-        int cantidadActual = 0;
-        if (rs.next()) {
-            cantidadActual = rs.getInt(columnaAlimento);
-=======
     public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<String> comboBox2, JTextField cantidadAlimento) {
         String tipoAlimento = (String) comboBox1.getSelectedItem();
         int cantidad = Integer.parseInt(cantidadAlimento.getText());
@@ -360,7 +321,7 @@ public class Producto {
             case "Comida B":
                 columnaAlimento = "Comida_B";
                 break;
->>>>>>> main
+
         }
         String consultaCantidad = "SELECT " + columnaAlimento + " FROM productos;";
         String consultaActualizacion = "UPDATE productos SET " + columnaAlimento + " = ?;";
