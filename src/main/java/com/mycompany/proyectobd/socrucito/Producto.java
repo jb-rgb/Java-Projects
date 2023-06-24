@@ -13,8 +13,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -36,6 +38,7 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
+
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
@@ -51,9 +54,17 @@ public class Producto {
         this.precioComidaA = 43;
         this.precioComidaB = 48;
         this.precioDesayunoA = 40;
+<<<<<<< HEAD
+        this.precioDesayunoB=45;
+        
+    }
+        
+
+=======
         this.precioDesayunoB = 45;
     }
     */
+
     
     public int getIdProducto() {
         return idProducto;
@@ -291,6 +302,7 @@ public class Producto {
         }
     }
         
+
     public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<String> comboBox2, JTextField cantidadAlimento) {
         String tipoAlimento = (String) comboBox1.getSelectedItem();
         int cantidad = Integer.parseInt(cantidadAlimento.getText());
@@ -309,6 +321,7 @@ public class Producto {
             case "Comida B":
                 columnaAlimento = "Comida_B";
                 break;
+
         }
         String consultaCantidad = "SELECT " + columnaAlimento + " FROM productos;";
         String consultaActualizacion = "UPDATE productos SET " + columnaAlimento + " = ?;";

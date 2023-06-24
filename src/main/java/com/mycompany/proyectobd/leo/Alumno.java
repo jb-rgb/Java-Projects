@@ -245,32 +245,47 @@ public class Alumno {
         jTextField1_beca.setText(" ");
     }
 
-    public void insertarAlumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) {
+    public void insertarAlumno(JTextField jTextField1_nombre, JTextField jTextField1_matricula, int comboBox) throws SQLException {
         Conexion objetoConexion = new Conexion();
+        
         String nombreAlumno =jTextField1_nombre.getText();        
         String matriculaAlumno = jTextField1_matricula.getText() ;
         
-        if(nombreAlumno.isEmpty() && matriculaAlumno.isEmpty()){ //validar que no se ingreso en blanco
-             setNombre_alumno(nombreAlumno);
-        setMatricula(matriculaAlumno);
-        setFaltas(0);
-        setId_beca(comboBox + 1);
+        String sql = "SELECT COUNT(*) FROM alumnos WHERE matricula = ?";
+        PreparedStatement statement = objetoConexion.establecerConexion().prepareStatement(sql);
+        statement.setString(1, matriculaAlumno);
         
-        String consulta = "INSERT INTO alumnos (nombre_alumno, matricula, faltas, id_beca) VALUES (?,?,?,?);";
-        try {
-            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
-            cs.setString(1, getNombre_alumno());
-            cs.setString(2, getMatricula());
-            cs.setInt(3, getFaltas());
-            cs.setLong(4, getId_beca());
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "BECARIO INGRESADO CORRECTAMENTE");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "NO SE PUDO BECARIO AL USUARIO CORRECTAMENTE" + e.toString());
-        }
-            
+        ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                if (count > 0) {
+                     JOptionPane.showMessageDialog(null, "La mtricula ya esta registrada.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    
+                    setNombre_alumno(nombreAlumno);
+                    setMatricula(matriculaAlumno);
+                    setFaltas(0);
+                    setId_beca(comboBox + 1);
+
+                    String consulta = "INSERT INTO alumnos (nombre_alumno, matricula, faltas, id_beca) VALUES (?,?,?,?);";
+                    try {
+                        
+                        CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+                        cs.setString(1, getNombre_alumno());
+                        cs.setString(2, getMatricula());
+                        cs.setInt(3, getFaltas());
+                        cs.setLong(4, getId_beca());
+                        cs.execute();
+                        JOptionPane.showMessageDialog(null, "BECARIO INGRESADO CORRECTAMENTE");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "NO SE PUDO BECARIO AL USUARIO CORRECTAMENTE" + e.toString());
+                    }
+
+                    
+                }
         }
         
+
        
     }
 
@@ -301,13 +316,7 @@ public class Alumno {
         // setFecha_nacimiento(Date.valueOf(fecha_nac_recibida.getText()));
         Conexion objetoConexion = new Conexion();
 
-        String consulta = "UPDATE alumnos SET nombre_alumno=?, matricula=?, faltas=?,id_beca=? WHERE alumnos.id_alumno=?; "; // donde
-                                                                                                                             // va
-                                                                                                                             // a
-                                                                                                                             // estar
-                                                                                                                             // guardada
-                                                                                                                             // la
-                                                                                                                             // consulta
+        String consulta = "UPDATE alumnos SET nombre_alumno=?, matricula=?, faltas=?,id_beca=? WHERE alumnos.id_alumno=?; "; // donde                                                                                                                  // consulta
         try {
             CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
 
@@ -318,7 +327,7 @@ public class Alumno {
             cs.setInt(5, getId_alumno());
             cs.execute();
 
-            JOptionPane.showMessageDialog(null, "USUARIO MODIFICADO CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "Alumno MODIFICADO CORRECTAMENTE");
 
         } catch (Exception e) {
 
@@ -345,6 +354,24 @@ public class Alumno {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR DE MANERA CORRECTAMENTE" + e.toString());
         }
+    }
+    public void eliminarAlumno(JTextField jTextField1_id)
+    {
+       Conexion con = new Conexion();
+       int id = Integer.parseInt(jTextField1_id.getText().toString());
+       
+       String sql = "DELETE FROM alumnos WHERE id_alumno ="+ id +";";
+  
+       try {
+            CallableStatement cs = con.establecerConexion().prepareCall(sql);
+            cs.execute();
+
+            JOptionPane.showMessageDialog(null, "Alumno BORRADO CORRECTAMENTE");
+            
+            
+       }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+       }
     }
     public void listar_becas(JComboBox comboBox) {
         // Obtener los datos de la tabla "becas"

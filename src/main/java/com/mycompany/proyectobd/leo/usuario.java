@@ -7,6 +7,7 @@ package com.mycompany.proyectobd.leo;
 import com.mycompany.proyectobd.Conexion;
 import javax.swing.*;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -93,5 +94,128 @@ public class usuario {
         }   
     }
     }
+    public void listUsuario(JTable tabla_usuarios) {
+        Conexion con = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        String sql = "";
+        modelo.addColumn("Id usuario");
+        modelo.addColumn("Nombre de usuario ");
+        modelo.addColumn("Contrasena");
+        modelo.addColumn("Tipos de usuario");
+        modelo.addColumn("Correo");
+
+        tabla_usuarios.setModel(modelo);
+        sql = "select id_usuario,nombre_usuario,contrasena_usuario,tipo_usuario,correo_usuario from usuario;"; // el texto de la consola
+
+        String[] datos = new String[5];
+        Statement st;
+        try {
+            st = con.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                modelo.addRow(datos);
+            }
+            tabla_usuarios.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+        
+        
+
+    }
+     public void research_usuario(JTable tabla_usuario, JTextField jTextField1_nombre) {
+    Conexion con = new Conexion();
+    DefaultTableModel modelo = new DefaultTableModel();
+
+    String sql = "";
+    modelo.addColumn("Id usuario");
+    modelo.addColumn("Nombre de usuario ");
+    modelo.addColumn("Contrasena");
+    modelo.addColumn("Tipos de usuario");
+    modelo.addColumn("Correo");
+
+    tabla_usuario.setModel(modelo);
+    
+    // Obtener el texto ingresado en el jTextField1_nombre
+    String nombreBusqueda = jTextField1_nombre.getText();
+    
+    // Consulta SQL modificada para incluir la búsqueda por nombre
+    sql = "SELECT id_usuario,nombre_usuario,contrasena_usuario,tipo_usuario,correo_usuario from usuario WHERE nombre_usuario LIKE '%" + nombreBusqueda + "%';";
+
+    String[] datos = new String[5];
+    Statement st;
+    try {
+        st = con.establecerConexion().createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            modelo.addRow(datos);
+        }
+        tabla_usuario.setModel(modelo);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+   }
+   public void ActualizarDatos(JTable tabla_usuario)
+   {
+       Conexion con = new Conexion();
+       int fila = tabla_usuario.getSelectedRow();
+       
+       int id_usuario = Integer.parseInt(tabla_usuario.getValueAt(fila, 0).toString());
+       
+       String nombre_usuario  = tabla_usuario.getValueAt(fila, 1).toString(); 
+       String contrasena = tabla_usuario.getValueAt(fila, 2).toString();;
+       String correo = tabla_usuario.getValueAt(fila, 4).toString(); ;
+       System.out.println(contrasena);
+       String sql = "UPDATE usuario set nombre_usuario= ?,contrasena_usuario=?,correo_usuario=? WHERE usuario.id_usuario ="+ id_usuario +";";
+      
+       try {
+            CallableStatement cs = con.establecerConexion().prepareCall(sql);
+
+            cs.setString(1, nombre_usuario);
+            cs.setString(2, contrasena);
+            cs.setString(3,correo);
+            cs.execute();
+
+            JOptionPane.showMessageDialog(null, "USUARIO MODIFICADO CORRECTAMENTE");
+            
+            
+       }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+       }
+       
+   }
+   public void BorrarUsuario(JTable tabla_usuario)
+   {
+      Conexion con = new Conexion();
+       int fila = tabla_usuario.getSelectedRow();
+       
+       int id_usuario = Integer.parseInt(tabla_usuario.getValueAt(fila, 0).toString());
+       
+       
+       
+       String sql = "DELETE FROM usuario WHERE usuario.id_usuario ="+ id_usuario +";";
+      
+       try {
+            CallableStatement cs = con.establecerConexion().prepareCall(sql);
+            cs.execute();
+
+            JOptionPane.showMessageDialog(null, "USUARIO BORRADO CORRECTAMENTE");
+            
+            
+       }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+       }
+   }
 
 }
