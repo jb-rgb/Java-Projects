@@ -151,6 +151,11 @@ public class alumno_frame extends javax.swing.JFrame {
         });
 
         jButton7.setText("Eliminar Usuario");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel6.setText("Lista de alumnos con beca");
@@ -256,7 +261,7 @@ public class alumno_frame extends javax.swing.JFrame {
     private void tabla_alumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_alumnosMouseClicked
         jTextField1_id.setEnabled(false);
         Alumno alumnoSelecionado = new Alumno();
-        alumnoSelecionado.seleccionar_usuario(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
+        alumnoSelecionado.seleccionarAlumno(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
     }//GEN-LAST:event_tabla_alumnosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -342,6 +347,23 @@ public class alumno_frame extends javax.swing.JFrame {
     private void jTextField1_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1_matriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1_matriculaActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       String alumno = jTextField1_nombre.getText();
+        Alumno alumnos = new Alumno();
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar a "+alumno+"?\n", "Confirmar actualización", JOptionPane.YES_NO_OPTION);
+        if(!alumno.isEmpty()){
+            if (respuesta == JOptionPane.YES_OPTION) {
+                alumnos.eliminarAlumno(jTextField1_id);
+                alumnos.list(tabla_alumnos);
+            } else {
+                // El usuario seleccionó "No" o cerró el cuadro de diálogo
+                JOptionPane.showMessageDialog(null, "No eliminaran los  datos.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un usuario");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

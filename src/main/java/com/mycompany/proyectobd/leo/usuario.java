@@ -166,5 +166,56 @@ public class usuario {
         JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
    }
+   public void ActualizarDatos(JTable tabla_usuario)
+   {
+       Conexion con = new Conexion();
+       int fila = tabla_usuario.getSelectedRow();
+       
+       int id_usuario = Integer.parseInt(tabla_usuario.getValueAt(fila, 0).toString());
+       
+       String nombre_usuario  = tabla_usuario.getValueAt(fila, 1).toString(); 
+       String contrasena = tabla_usuario.getValueAt(fila, 2).toString();;
+       String correo = tabla_usuario.getValueAt(fila, 4).toString(); ;
+       System.out.println(contrasena);
+       String sql = "UPDATE usuario set nombre_usuario= ?,contrasena_usuario=?,correo_usuario=? WHERE usuario.id_usuario ="+ id_usuario +";";
+      
+       try {
+            CallableStatement cs = con.establecerConexion().prepareCall(sql);
+
+            cs.setString(1, nombre_usuario);
+            cs.setString(2, contrasena);
+            cs.setString(3,correo);
+            cs.execute();
+
+            JOptionPane.showMessageDialog(null, "USUARIO MODIFICADO CORRECTAMENTE");
+            
+            
+       }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+       }
+       
+   }
+   public void BorrarUsuario(JTable tabla_usuario)
+   {
+      Conexion con = new Conexion();
+       int fila = tabla_usuario.getSelectedRow();
+       
+       int id_usuario = Integer.parseInt(tabla_usuario.getValueAt(fila, 0).toString());
+       
+       
+       
+       String sql = "DELETE FROM usuario WHERE usuario.id_usuario ="+ id_usuario +";";
+      
+       try {
+            CallableStatement cs = con.establecerConexion().prepareCall(sql);
+            cs.execute();
+
+            JOptionPane.showMessageDialog(null, "USUARIO BORRADO CORRECTAMENTE");
+            
+            
+       }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+       }
+   }
 
 }

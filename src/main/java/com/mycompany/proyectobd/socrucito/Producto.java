@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -31,8 +32,7 @@ public class Producto {
     private float precioProducto;
     private int cantidadProducto;
     private int cantidadVendida;
-<<<<<<< HEAD
-=======
+
     private int precioDesayunoA;
     private int precioDesayunoB;
     private int precioComidaA;
@@ -48,10 +48,9 @@ public class Producto {
         this.precioDesayunoA = 40;
         this.precioDesayunoB=45;
         
-        
-        
     }
->>>>>>> main
+        
+
     
     public int getIdProducto() {
         return idProducto;
@@ -250,7 +249,7 @@ public class Producto {
         }
     }
         
-    public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<String> comboBox2, JTextField cantidadAlimento) {
+    public void cobrarAlimento(JComboBox comboBox1, JComboBox comboBox2, JTextField cantidadAlimento) {
     String tipoAlimento = (String) comboBox1.getSelectedItem();
     int cantidad = Integer.parseInt(cantidadAlimento.getText());
     Conexion conec = new Conexion();

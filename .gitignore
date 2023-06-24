@@ -1,10 +1,2 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-conexion.java
-=======
-src\main\java\com\mycompany\proyectobd\Conexion.java
 
->>>>>>> ac9129bb17eab13d26e696c76362bd4659b223f3
-=======
-Conexion.java
->>>>>>> main
+src\main\java\com\mycompany\proyectobd\Conexion.java

@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectobd.leo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leonel
@@ -15,6 +17,7 @@ public class usuario_administrar extends javax.swing.JFrame {
      */
     public usuario_administrar() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         usuario u = new usuario();
         u.listUsuario(jTable1_usuarios);
         this.setLocationRelativeTo(null);
@@ -42,6 +45,11 @@ public class usuario_administrar extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Lista de usuarios");
@@ -76,10 +84,25 @@ public class usuario_administrar extends javax.swing.JFrame {
         });
 
         jButton3.setText("Actualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Limpiar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Atras");
 
@@ -153,8 +176,64 @@ public class usuario_administrar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        usuario_frame jd = new usuario_frame();
+        jd.setVisible(true);
+        this.setVisible(false); 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        usuario u = new usuario();
+
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea actualizar los datos?", "Confirmar actualización", JOptionPane.YES_NO_OPTION);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            // El usuario seleccionó "Sí"
+            // Aquí puedes agregar la lógica de actualización de los datos
+            u.ActualizarDatos(jTable1_usuarios);
+            u.listUsuario(jTable1_usuarios);
+
+        } else {
+            // El usuario seleccionó "No" o cerró el cuadro de diálogo
+             u.listUsuario(jTable1_usuarios);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        usuario u = new usuario();
+        int fila = jTable1_usuarios.getSelectedRow();
+      
+        String nombre_usuario  = jTable1_usuarios.getValueAt(fila, 1).toString(); 
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar a "+nombre_usuario+"?\n", "Confirmar actualización", JOptionPane.YES_NO_OPTION);
+        if(!nombre_usuario.isEmpty()){
+            if (respuesta == JOptionPane.YES_OPTION) {
+
+                u.BorrarUsuario(jTable1_usuarios);
+                u.listUsuario(jTable1_usuarios);
+            } else {
+                // El usuario seleccionó "No" o cerró el cuadro de diálogo
+                JOptionPane.showMessageDialog(null, "No eliminaran los  datos.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un usuario");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        usuario u = new usuario();
+        //u.BorrarUsuario(jTable1_usuarios);
+        jTextField1_search.setText("");
+        u.listUsuario(jTable1_usuarios);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int option = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres cerrar la ventana?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            // Aquí puedes agregar el código adicional que quieras ejecutar antes de cerrar la ventana.
+            setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        } else {
+            setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
