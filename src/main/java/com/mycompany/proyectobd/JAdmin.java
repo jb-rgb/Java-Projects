@@ -8,6 +8,7 @@ import com.mycompany.proyectobd.leo.usuario_frame;
 import com.mycompany.proyectobd.leo.alumno_frame;
 import com.mycompany.proyectobd.jorge.JProducto;
 import com.mycompany.proyectobd.leo.agregar_alumno;
+import java.awt.BorderLayout;
 
 
 /**
@@ -21,6 +22,7 @@ public class JAdmin extends javax.swing.JFrame {
      */
     public JAdmin() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -42,8 +44,8 @@ public class JAdmin extends javax.swing.JFrame {
         jButtonSeguimientoBeca = new javax.swing.JButton();
         jButtonGenrarReporte = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,6 +56,7 @@ public class JAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(0, 51, 51));
 
+        jButton_ingresarUsuario.setBackground(new java.awt.Color(0, 0, 204));
         jButton_ingresarUsuario.setText("Ingresar Usuario");
         jButton_ingresarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,47 +106,54 @@ public class JAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setText("Administrador ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonAdministrarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton_BecarioNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonSeguimientoBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_CrearEvento)
-                            .addComponent(jButtonGenrarReporte))))
-                .addGap(47, 47, 47))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonGenrarReporte)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonAdministrarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_BecarioNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSeguimientoBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_CrearEvento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_ingresarUsuario)
-                    .addComponent(jButton_BecarioNuevo2)
-                    .addComponent(jButton_CrearEvento))
-                .addGap(63, 63, 63)
+                    .addComponent(jButtonAdministrarInventario)
+                    .addComponent(jButton_BecarioNuevo2))
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSeguimientoBeca)
-                    .addComponent(jButtonGenrarReporte)
-                    .addComponent(jButtonAdministrarInventario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(33, 33, 33))
+                    .addComponent(jButton2)
+                    .addComponent(jButton_CrearEvento))
+                .addGap(44, 44, 44)
+                .addComponent(jButtonGenrarReporte)
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         jButton1.setText("Salir");
@@ -153,100 +163,94 @@ public class JAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel1.setText("Administrador ");
-
         javax.swing.GroupLayout jPanel_navegadorLayout = new javax.swing.GroupLayout(jPanel_navegador);
         jPanel_navegador.setLayout(jPanel_navegadorLayout);
         jPanel_navegadorLayout.setHorizontalGroup(
             jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_navegadorLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(80, 80, 80)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPanel_navegadorLayout.setVerticalGroup(
             jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_navegadorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_navegadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_navegadorLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_navegadorLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(21, 21, 21)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel_navegadorLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel_navegador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 380));
+        getContentPane().add(jPanel_navegador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 410));
         getContentPane().add(jLabel_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_ingresarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarUsuarioActionPerformed
-        // TODO add your handling code here:
-       //llamar al jframe de ingresar usuario 
-       usuario_frame interface_Usuario = new usuario_frame();
-       interface_Usuario.setVisible(true);
-    }//GEN-LAST:event_jButton_ingresarUsuarioActionPerformed
-
-    private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
-        // TODO add your handling code here:
-        
-        CrearEvento interfaceNuevoEvento = new CrearEvento();
-        interfaceNuevoEvento.setVisible(true);
-        
-    }//GEN-LAST:event_jButton_CrearEventoActionPerformed
-
-    private void jButton_BecarioNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BecarioNuevo2ActionPerformed
-        // TODO add your handling code here:
-        agregar_alumno NuevoAlumno = new agregar_alumno();
-        NuevoAlumno.setVisible(true);
-        
-    }//GEN-LAST:event_jButton_BecarioNuevo2ActionPerformed
-
-    private void jButtonAdministrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarInventarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAdministrarInventarioActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JProducto producto = new JProducto();
+        producto.setVisible(true);
+     
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonGenrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenrarReporteActionPerformed
         // TODO add your handling code here:
         reportes NuevoReporte = new reportes();
         NuevoReporte.setVisible(true);
-        
-        
     }//GEN-LAST:event_jButtonGenrarReporteActionPerformed
 
     private void jButtonSeguimientoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeguimientoBecaActionPerformed
         // TODO add your handling code here:
         alumno_frame SeguimientoBeca = new alumno_frame();
         SeguimientoBeca.setVisible(true);
-        
     }//GEN-LAST:event_jButtonSeguimientoBecaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JProducto producto = new JProducto();
-        producto.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonAdministrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarInventarioActionPerformed
+        // TODO add your handling code here:
+        JProducto productos = new JProducto();
+        productos.setVisible(true);
+    }//GEN-LAST:event_jButtonAdministrarInventarioActionPerformed
+
+    private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
+        // TODO add your handling code here:
+
+        CrearEvento interfaceNuevoEvento = new CrearEvento();
+        interfaceNuevoEvento.setVisible(true);
+    }//GEN-LAST:event_jButton_CrearEventoActionPerformed
+
+    private void jButton_BecarioNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BecarioNuevo2ActionPerformed
+        // TODO add your handling code here:
+        agregar_alumno NuevoAlumno = new agregar_alumno();
+        NuevoAlumno.setVisible(true);
+      
+        
+       
+        
+       // NuevoAlumno.setVisible(true);
+    }//GEN-LAST:event_jButton_BecarioNuevo2ActionPerformed
+
+    private void jButton_ingresarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarUsuarioActionPerformed
+        // TODO add your handling code here:
+        //llamar al jframe de ingresar usuario
+        usuario_frame interface_Usuario = new usuario_frame();
+      interface_Usuario.setVisible(true);
+        
+    }//GEN-LAST:event_jButton_ingresarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
+ 
+            
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

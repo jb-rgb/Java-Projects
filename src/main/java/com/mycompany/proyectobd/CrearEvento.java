@@ -42,6 +42,8 @@ public class CrearEvento extends javax.swing.JFrame {
         jButtonCrearEvento = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextLugarEvento = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBoxTipo_evento = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -82,6 +84,15 @@ public class CrearEvento extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Tipo de evento:");
+
+        jComboBoxTipo_evento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especial", "Formal", "Cultural", " " }));
+        jComboBoxTipo_evento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipo_eventoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,15 +104,14 @@ public class CrearEvento extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextLugarEvento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                             .addComponent(jTextDescripcionEvento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
@@ -109,7 +119,10 @@ public class CrearEvento extends javax.swing.JFrame {
                             .addComponent(jTextFechaEvento))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(jButtonCrearEvento)
-                        .addGap(56, 56, 56))))
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBoxTipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +146,11 @@ public class CrearEvento extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextLugarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBoxTipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,9 +179,17 @@ public class CrearEvento extends javax.swing.JFrame {
 
     private void jButtonCrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEventoActionPerformed
         // TODO add your handling code here:
-        
+           String Evento =jComboBoxTipo_evento.getSelectedItem().toString();
+           int tipo_evento = -1;
+           if(Evento.compareTo("especial")==0){
+              tipo_evento = 0;
+           }else if(Evento.compareTo("especial")==0){
+               tipo_evento = 1;
+           }else if(Evento.compareTo("especial")==0){
+               tipo_evento = 3;
+           }
         Evento evento1 = new Evento();
-        evento1.guardarEvento(jTextNombreEvento, jTextDescripcionEvento, jTextFechaEvento,jTextLugarEvento);
+        evento1.guardarEvento(jTextNombreEvento, jTextDescripcionEvento, jTextFechaEvento,jTextLugarEvento,tipo_evento);
         
         
     }//GEN-LAST:event_jButtonCrearEventoActionPerformed
@@ -176,16 +201,18 @@ public class CrearEvento extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         String botones[]={"Cerrar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana","Titulo",0,0,null,botones,this);
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de crear evento","Titulo",0,0,null,botones,this);
         if(eleccion == JOptionPane.YES_OPTION){
-            System.exit(0);
+            this.dispose();
         }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
            //JOptionPane.showConfirmDialog("pasa", evt);
-        }
-        
-        
-        
+        }        
     }//GEN-LAST:event_formWindowClosing
+
+    private void jComboBoxTipo_eventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipo_eventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTipo_eventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,10 +251,12 @@ public class CrearEvento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCrearEvento;
+    private javax.swing.JComboBox<String> jComboBoxTipo_evento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextDescripcionEvento;

@@ -5,6 +5,7 @@
 package com.mycompany.proyectobd.jorge;
 import com.mycompany.proyectobd.JAdmin;
 import com.mycompany.proyectobd.socrucito.Producto;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jorge
@@ -16,6 +17,8 @@ public class JProducto extends javax.swing.JFrame {
      */
     public JProducto() {
         initComponents();
+          this.setLocationRelativeTo(null);
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Producto producto = new Producto();
         producto.mostrarProducto(TbListaProductos);
         this.setLocationRelativeTo(null);
@@ -51,6 +54,11 @@ public class JProducto extends javax.swing.JFrame {
         TbListaProductos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -219,7 +227,7 @@ public class JProducto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,7 +238,9 @@ public class JProducto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -268,6 +278,18 @@ public class JProducto extends javax.swing.JFrame {
         producto.eliminarProducto(TxtIdProducto);
         producto.mostrarProducto(TbListaProductos);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+            String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de productos","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+             this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

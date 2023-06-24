@@ -26,6 +26,7 @@ public class reportes extends javax.swing.JFrame {
      */
     public reportes() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -47,6 +48,11 @@ public class reportes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 153));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel_tipoReporte.setText("tipo reporte");
 
@@ -61,7 +67,7 @@ public class reportes extends javax.swing.JFrame {
 
         jLabel_generarReporte.setText("Generar reporte");
 
-        jComboBox_Tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mes", "semestre", "año" }));
+        jComboBox_Tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mes", "año" }));
         jComboBox_Tiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_TiempoActionPerformed(evt);
@@ -114,17 +120,17 @@ public class reportes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(102, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(101, 101, 101))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,10 +241,22 @@ public class reportes extends javax.swing.JFrame {
         }
             
         }
-
-             
     }//GEN-LAST:event_jButton_generarReporteActionPerformed
     }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+         String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+            this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }
+        
+    }//GEN-LAST:event_formWindowClosing
+    
+
     /**
      * @param args the command line arguments
      */

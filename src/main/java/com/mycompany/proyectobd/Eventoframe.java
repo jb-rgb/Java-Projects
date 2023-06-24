@@ -49,6 +49,9 @@ public class Eventoframe extends javax.swing.JFrame {
         jButtonEliminar = new javax.swing.JButton();
         jLabelId_Evento = new javax.swing.JLabel();
         jTextFieldIdEvento = new javax.swing.JTextField();
+        jButtonAgregarMenu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldTipo_evento = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,6 +137,15 @@ public class Eventoframe extends javax.swing.JFrame {
             }
         });
 
+        jButtonAgregarMenu.setText("Agregar Menu");
+        jButtonAgregarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarMenuActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Tipo evento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,67 +153,76 @@ public class Eventoframe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabelNombreE)
-                                .addComponent(jLabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonClearEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelNombreE)
+                            .addComponent(jLabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonClearEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelId_Evento)
                             .addComponent(jLabelFechaE)
-                            .addComponent(jLabelLugarE))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldNombreEvento1)
-                            .addComponent(jTextFieldFechaEvento1)
-                            .addComponent(jTextFieldDescripcionE2)
-                            .addComponent(jTextFieldLugarEvento2)
-                            .addComponent(jModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIdEvento))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                            .addComponent(jLabelLugarE)
+                            .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jButtonAgregarMenu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldTipo_evento, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextFieldNombreEvento1)
+                                        .addComponent(jTextFieldFechaEvento1)
+                                        .addComponent(jTextFieldDescripcionE2)
+                                        .addComponent(jTextFieldLugarEvento2)
+                                        .addComponent(jModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldIdEvento))))))
+                    .addComponent(jLabel1))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelId_Evento)
+                    .addComponent(jTextFieldIdEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId_Evento)
-                            .addComponent(jTextFieldIdEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldNombreEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldNombreEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldFechaEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelNombreE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelFechaE)))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldDescripcionE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelDescripcion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldLugarEvento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelLugarE))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonClearEvento)
-                            .addComponent(jModificar))
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonEliminar))
+                        .addComponent(jTextFieldFechaEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelNombreE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelFechaE)))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldDescripcionE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDescripcion))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldTipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLugarEvento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLugarE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonClearEvento)
+                    .addComponent(jModificar))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jButtonAgregarMenu))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -227,7 +248,7 @@ public class Eventoframe extends javax.swing.JFrame {
         // TODO add your handling code here:
          
         Evento eventoSelecionado = new Evento();
-        eventoSelecionado.selecionaEvento(tabla_eventos,jTextFieldIdEvento,jTextFieldNombreEvento1,jTextFieldDescripcionE2, jTextFieldFechaEvento1,jTextFieldLugarEvento2); 
+        eventoSelecionado.selecionaEvento(tabla_eventos,jTextFieldIdEvento,jTextFieldNombreEvento1,jTextFieldDescripcionE2, jTextFieldFechaEvento1,jTextFieldLugarEvento2,jTextFieldTipo_evento); 
         
         
     }//GEN-LAST:event_tabla_eventosMouseClicked
@@ -242,7 +263,7 @@ public class Eventoframe extends javax.swing.JFrame {
         if (!jTextFieldDescripcionE2.getText().isEmpty()) {
             try {
                 Evento eventoModificar = new Evento();
-                eventoModificar.actualizarEvento(jTextFieldIdEvento,jTextFieldNombreEvento1,jTextFieldDescripcionE2, jTextFieldFechaEvento1,jTextFieldLugarEvento2);
+                eventoModificar.actualizarEvento(jTextFieldIdEvento,jTextFieldNombreEvento1,jTextFieldDescripcionE2, jTextFieldFechaEvento1,jTextFieldLugarEvento2,jTextFieldTipo_evento);
                 eventoModificar.listarEventos(tabla_eventos);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "El ID debe ser un número válido");
@@ -263,6 +284,13 @@ public class Eventoframe extends javax.swing.JFrame {
     private void jTextFieldLugarEvento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLugarEvento2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLugarEvento2ActionPerformed
+
+    private void jButtonAgregarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarMenuActionPerformed
+        // TODO add your handling code here:
+        AgregarMenu nuevoM= new AgregarMenu();
+        nuevoM.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonAgregarMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,8 +328,10 @@ public class Eventoframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgregarMenu;
     private javax.swing.JButton jButtonClearEvento;
     private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelDescripcion;
     private javax.swing.JLabel jLabelFechaE;
     private javax.swing.JLabel jLabelId_Evento;
@@ -315,6 +345,7 @@ public class Eventoframe extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldIdEvento;
     private javax.swing.JTextField jTextFieldLugarEvento2;
     private javax.swing.JTextField jTextFieldNombreEvento1;
+    private javax.swing.JTextField jTextFieldTipo_evento;
     private javax.swing.JTable tabla_eventos;
     // End of variables declaration//GEN-END:variables
 }

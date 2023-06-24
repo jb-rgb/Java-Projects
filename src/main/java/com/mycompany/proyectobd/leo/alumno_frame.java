@@ -18,9 +18,10 @@ public class alumno_frame extends javax.swing.JFrame {
      */
     public alumno_frame() {
         initComponents();
+          setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Alumno alumnos = new Alumno();
         alumnos.list(tabla_alumnos);
-        this.setLocationRelativeTo(null);
+      
         jTextField1_beca.setEditable(false);
     }
 
@@ -53,6 +54,11 @@ public class alumno_frame extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Id");
 
@@ -236,10 +242,6 @@ public class alumno_frame extends javax.swing.JFrame {
     private void tabla_alumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_alumnosMouseClicked
         jTextField1_id.setEnabled(false);
         Alumno alumnoSelecionado = new Alumno();
-<<<<<<< HEAD
-
-=======
->>>>>>> main
         alumnoSelecionado.seleccionarAlumno(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
 
         //alumnoSelecionado.seleccionar_usuario(tabla_alumnos, jTextField1_id, jTextField1_nombre, jTextField1_matricula, jTextField1_Faltas, jTextField1_beca);
@@ -325,6 +327,18 @@ public class alumno_frame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingresa por lo menos un digito");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+              String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de crear evento","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+            this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }     
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
