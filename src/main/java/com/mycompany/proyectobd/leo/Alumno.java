@@ -350,10 +350,31 @@ public class Alumno {
             cs.setString(3, getFecha());
             cs.setString(4, getTipo());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta");
+            JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta, Impriendo Boleto");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR DE MANERA CORRECTAMENTE" + e.toString());
         }
+    }
+      
+    public int validar_asistencias(int id_alumno)
+    {
+        int resultado = 0;
+         Conexion objetoConexion = new Conexion();
+         String consulta = "SELECT faltas FROM alumnos WHERE id_alumno = " + id_alumno + ";";
+         try {
+             CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+             ResultSet rs = cs.executeQuery();
+
+             int faltas = 0;
+             if (rs.next()) {
+                 faltas = rs.getInt("faltas");
+             }
+
+             resultado = (faltas < 3) ? 1 : 0;
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+       return resultado;
     }
     public void eliminarAlumno(JTextField jTextField1_id)
     {
