@@ -231,7 +231,7 @@ public class MenuEvento {
         }
     }
     
-    public void eliminarEvento(int id_evento) {
+    public void eliminarMenuEvento(int id_evento) {
         // Lógica para eliminar el evento de la base de datos
              setId_MenuEvento(id_evento);
                   Conexion coneccion = new Conexion();

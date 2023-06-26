@@ -150,18 +150,20 @@ public class reportes extends javax.swing.JFrame {
         String tiempo = jComboBox_Tiempo.getSelectedItem().toString();
         String Consulta = "";
         Document documento = new Document();
+         String ruta = System.getProperty("user.home");
         
-       System.out.println("Numero:"+tipo_Reporte.compareTo("sin reporte"));
+       System.out.println("Numero:"+tipo_Reporte.compareTo("reporte ventas"));
        
         if(tipo_Reporte.compareTo("reporte eventos")==0) {
-               System.out.println("entro al if");
+              // System.out.println("entro al if");
             if(!(tiempo.isEmpty())) {
                 try {
-                    String ruta = System.getProperty("user.home");
+                   
+                    System.out.print(ruta + "/Desktop/ReporteEventos1.pdf");
                     PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteEventos.pdf"));
                     documento.open();
                     PdfPTable tabla = new PdfPTable(6);
-                    tabla.addCell("Tiempo");
+                
                     tabla.addCell("evento");
                     tabla.addCell("lugar");
                     tabla.addCell("menu");
@@ -183,7 +185,7 @@ public class reportes extends javax.swing.JFrame {
                         st1 = objetoConexion.establecerConexion().createStatement();
                         ResultSet rs = st1.executeQuery(Consulta);
                         while (rs.next()) {
-                            tabla.addCell(tiempo);
+                          
                             tabla.addCell(rs.getString(1));
                             tabla.addCell(rs.getString(2));
                             tabla.addCell(rs.getString(3));
@@ -192,9 +194,10 @@ public class reportes extends javax.swing.JFrame {
                             tabla.addCell(rs.getString(6));
                             documento.add(tabla);
                         }
+                        System.out.print("se ejecuto");
 
                     } catch (DocumentException | SQLException e) {
-                        JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                        JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA de mes");
                     }
 
                     documento.close();
@@ -206,39 +209,53 @@ public class reportes extends javax.swing.JFrame {
 
             } 
         }else if(tipo_Reporte.compareTo("reporte ventas") ==0 ) {
+              System.out.println("entro al if");
                 if(!(tiempo.isEmpty())) {
                     try {
-                        String ruta = System.getProperty("user.name");
+        
                         PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteVentas.pdf"));
                         documento.open();
-                        PdfPTable tabla = new PdfPTable(3);
-                        tabla.addCell("Reporte");
-                        tabla.addCell("Tiempo");
-                        tabla.addCell("cantidad vendida");
-                        Conexion objetoConexion = new Conexion();
-
-                        String Consulta1 = "Select * from eventos";
-                        Statement st;
+                        PdfPTable tabla2 = new PdfPTable(6);
+                        tabla2.addCell("Desayuno A");
+                        tabla2.addCell("Desayuno B");
+                        tabla2.addCell("Comida A");
+                        tabla2.addCell("Comida B");
+                        tabla2.addCell("precio total");
+                        tabla2.addCell("Total vendidos");
+                        Conexion objetoConexion1 = new Conexion();
+                         System.out.println("AQUI22");
+                         if(tiempo.compareTo("mes") == 0) {
+                        System.out.println("INGRESO A MES");
+                        Consulta = "SELECT * FROM alimentos ";
+                    }else if(tiempo.compareTo("año") == 0) {
+                         System.out.println("INGRESO A anio");
+                        Consulta = "SELECT * FROM alimentos";
+                    }   
+                       
+                        Statement st1;
                         try {
 
-                            st = objetoConexion.establecerConexion().createStatement();
-                            ResultSet rs = st.executeQuery(Consulta1);
-                            while (rs.next()) {
-                                tabla.addCell(rs.getString(1));
-                                tabla.addCell(rs.getString(2));
-                                tabla.addCell(rs.getString(3));
-                                documento.add(tabla);
+                            st1 = objetoConexion1.establecerConexion().createStatement();
+                            ResultSet rs2 = st1.executeQuery(Consulta);
+                            while (rs2.next()) {
+                            tabla2.addCell(rs2.getString(1));
+                            tabla2.addCell(rs2.getString(2));
+                            tabla2.addCell(rs2.getString(3));
+                            tabla2.addCell(rs2.getString(4));
+                            tabla2.addCell(rs2.getString(5));
+                            tabla2.addCell(rs2.getString(6));
+                            documento.add(tabla2);
                             }
 
                         } catch (DocumentException | SQLException e) {
-                            JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                            JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA DEL REPORTE");
                         }
 
                         documento.close();
                         JOptionPane.showMessageDialog(null, "PDF creado correctamente");
 
                     } catch (DocumentException | FileNotFoundException e) {
-                        JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE");
+                        JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE"+e);
                     }
 
                 }

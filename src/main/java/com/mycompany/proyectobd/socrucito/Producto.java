@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JLabel;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,10 +40,11 @@ public class Producto {
     private int cantidadProducto;
     private int cantidadVendida;
 
-    private int precioDesayunoA;
-    private int precioDesayunoB;
-    private int precioComidaA;
-    private int precioComidaB;
+     private static int precioDesayunoA = 40;
+    private static int precioDesayunoB = 45;
+    private static int precioComidaA = 43;
+    private static int precioComidaB = 48;
+    private javax.swing.JLabel jLabel1;
 
     /*
     public Producto(int id_producto, String nombre_producto, String descripcion_producto, float precio_producto, int cantidad_producto) {
@@ -140,6 +142,7 @@ public class Producto {
         try {
             int row = tablaProducto.getSelectedRow();
             if(row >= 0) {
+                
                 id_producto.setText(tablaProducto.getValueAt(row, 0).toString());
                 nombre_producto.setText(tablaProducto.getValueAt(row, 1).toString());
                 descripcion_producto.setText(tablaProducto.getValueAt(row, 2).toString());
@@ -152,7 +155,23 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
-    
+    public void seleccionarProductoID(JTable tablaProducto, JTextField id_producto, JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
+        try {
+            int row = tablaProducto.getSelectedRow();
+            if(row >= 0) {
+                
+                id_producto.setText(tablaProducto.getValueAt(row, 0).toString());
+             // nombre_producto.setText(tablaProducto.getValueAt(row, 1).toString());
+               // descripcion_producto.setText(tablaProducto.getValueAt(row, 2).toString());
+              ///  precio_producto.setText(tablaProducto.getValueAt(row, 3).toString());
+               // cantidad_producto.setText(tablaProducto.getValueAt(row, 4).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
     public void actualizarProducto(JTextField id_producto, JTextField nombre_producto, JTextField descripcion_producto, JTextField precio_producto, JTextField cantidad_producto) {
         String idProductoString = id_producto.getText();
         BigInteger idProductoBigInt = new BigInteger(idProductoString);
@@ -327,7 +346,6 @@ public class Producto {
         try {
             Connection conexion = conec.establecerConexion();
             PreparedStatement ps = conexion.prepareStatement(consulta);
-            JOptionPane.showMessageDialog(null, cantidad + ", " + id);
             ps.setInt(1, cantidad);
             ps.setInt(2, id);
             int filasActualizadas = ps.executeUpdate();
@@ -337,7 +355,6 @@ public class Producto {
                     System.out.println("Tarea en ejecución");
                     if(filasActualizadas > 0) {
                         JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
-                        inventario.reducirInventario();
                         timer.cancel();
                     } else {
                         JOptionPane.showMessageDialog(null, "No se puso realizar el cobro");
@@ -356,54 +373,105 @@ public class Producto {
         }
     }
         
-
-    public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<String> comboBox2, JTextField cantidadAlimento) {
-        String tipoAlimento = (String) comboBox1.getSelectedItem();
-        int cantidad = Integer.parseInt(cantidadAlimento.getText());
+    public void listarProductos(JTable paraTotalDeProductos){
         Conexion conec = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_producto");
+        modelo.addColumn("nombre_producto");
+        modelo.addColumn("precio_producto");
+        paraTotalDeProductos.setModel(modelo);
+        String sql = "SELECT id_producto, nombre_producto, precio_producto FROM productos;"; 
+        String[] datos = new String[3];
+        Statement st;
+        try {
+            st = conec.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                modelo.addRow(datos);
+            }
+            paraTotalDeProductos.setModel(modelo);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+     public void cobrarAlimento(JComboBox<String> comboBox1, JComboBox<Integer> comboBox2, JLabel labelTotal) {
+        String tipoAlimento = (String) comboBox1.getSelectedItem();
+        int cantidad = (int) comboBox2.getSelectedItem();
         String columnaAlimento = "";
+        float precioAlimento = 0;
+
         switch (tipoAlimento) {
             case "Desayuno A":
                 columnaAlimento = "Desayuno_A";
+                precioAlimento = precioDesayunoA;
                 break;
             case "Desayuno B":
                 columnaAlimento = "Desayuno_B";
+                precioAlimento = precioDesayunoB;
                 break;
             case "Comida A":
                 columnaAlimento = "Comida_A";
+                precioAlimento = precioComidaA;
                 break;
             case "Comida B":
                 columnaAlimento = "Comida_B";
+                precioAlimento = precioComidaB;
                 break;
-
         }
-        String consultaCantidad = "SELECT " + columnaAlimento + " FROM productos;";
-        String consultaActualizacion = "UPDATE productos SET " + columnaAlimento + " = ?;";
+
+        float total = precioAlimento * cantidad;
+
+        // Actualizar el campo precio_total en el JLabel
+        labelTotal.setText("Total: " + total);
+
+        // Actualizar la cantidad en la base de datos
+        Conexion conec = new Conexion();
+        String consultaActualizacion = "UPDATE categoria.alimentos SET " + columnaAlimento + " = " + columnaAlimento + " + ?;";
+
         try {
             Connection conexion = conec.establecerConexion();
-            // Obtener la cantidad actual
-            Statement stmt = conexion.createStatement();
-            ResultSet rs = stmt.executeQuery(consultaCantidad);
-            int cantidadActual = 0;
-            if (rs.next()) {
-                cantidadActual = rs.getInt(columnaAlimento);
-            }
-            // Sumar la cantidad seleccionada
-            int nuevaCantidad = cantidadActual + cantidad;
-            // Actualizar la cantidad en la base de datos
+
             PreparedStatement ps = conexion.prepareStatement(consultaActualizacion);
-            ps.setInt(1, nuevaCantidad);
+            ps.setInt(1, cantidad);
             int filasActualizadas = ps.executeUpdate();
+
             if (filasActualizadas > 0) {
                 JOptionPane.showMessageDialog(null, "Cobro realizado correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo realizar el cobro");
             }
+
             ps.close();
-            stmt.close();
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
+public void mostrarTotal(String tipoAlimento, int cantidad, JLabel labelTotal) {
+    float precio = 0.0f;
+
+    switch (tipoAlimento) {
+        case "Desayuno A":
+            precio = precioDesayunoA;
+            break;
+        case "Desayuno B":
+            precio = precioDesayunoB;
+            break;
+        case "Comida A":
+            precio = precioComidaA;
+            break;
+        case "Comida B":
+            precio = precioComidaB;
+            break;
+    }
+
+    float total = precio * cantidad;
+    labelTotal.setText(String.valueOf(total));
+    
+}
+
 }
