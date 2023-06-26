@@ -4,6 +4,13 @@
  */
 package com.mycompany.proyectobd.leo;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leonel
@@ -136,12 +143,39 @@ public class agregar_alumno extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         Alumno alumno1 = new Alumno();
-        alumno1.insertarAlumno(jTextField1_nombre,  jTextField1_matricula, jComboBox1_beca.getSelectedIndex());
-        this.setVisible(false);
-        alumno_frame al = new alumno_frame();
-        al.setVisible(true);
+        
+        String matricula = jTextField1_matricula.getText();
+        String nombre = jTextField1_nombre.getText();
+        int respuesta = ValidarMatricula(matricula,nombre);
+        if(respuesta == 0)
+        {
+            try {
+                alumno1.insertarAlumno(jTextField1_nombre,  jTextField1_matricula, jComboBox1_beca.getSelectedIndex());
+                System.out.println("Ingreso a meter el alumno");
+            } catch (SQLException ex) {
+                Logger.getLogger(agregar_alumno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+            alumno_frame al = new alumno_frame();
+            al.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(null, "Ingrese una matrícula válida. debe tener al menos 10 digitos\n\n O agrega el nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private int ValidarMatricula(String matricula,String nombre)
+    {
+        String regex = "\\d{10}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(matricula);
+        
+        if (matcher.matches() && !nombre.isEmpty()) {
+            return 0; 
 
+        } else {    
+            return 1; //no tiene 10 digitos 
+        }
+    }
     private void jComboBox1_becaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1_becaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1_becaMouseClicked
