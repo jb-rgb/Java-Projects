@@ -24,7 +24,7 @@ public class JProducto extends javax.swing.JFrame {
         initComponents();
 
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         TxtIdProducto.setEnabled(false);
 

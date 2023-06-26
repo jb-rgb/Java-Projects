@@ -9,7 +9,7 @@ public class Conexion {
 
      Connection conectar = null;
     String usuario = "root";
-    String contrasenia = "mr.robot";
+    String contrasenia = "";
     String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "3036";
