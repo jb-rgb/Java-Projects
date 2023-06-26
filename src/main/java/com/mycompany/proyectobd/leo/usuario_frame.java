@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectobd.leo;
+import com.mycompany.proyectobd.JAdmin;
 import javax.swing.JOptionPane;
 /**
  *
@@ -187,9 +188,9 @@ public class usuario_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        usuario_administrar jd = new usuario_administrar();
+        JAdmin jd = new JAdmin();
         jd.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

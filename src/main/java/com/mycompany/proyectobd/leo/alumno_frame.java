@@ -4,7 +4,9 @@
  */
 package com.mycompany.proyectobd.leo;
 
+import com.mycompany.proyectobd.JAdmin;
 import com.mycompany.proyectobd.JDueño;
+import com.mycompany.proyectobd.login;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +20,8 @@ public class alumno_frame extends javax.swing.JFrame {
      */
     public alumno_frame() {
         initComponents();
-          setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Alumno alumnos = new Alumno();
         alumnos.list(tabla_alumnos);
       
@@ -54,6 +57,7 @@ public class alumno_frame extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -166,6 +170,13 @@ public class alumno_frame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel6.setText("Lista de alumnos con beca");
 
+        jToggleButton1.setText("Salir");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,12 +213,15 @@ public class alumno_frame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
+                .addComponent(jToggleButton1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -372,7 +386,9 @@ public class alumno_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jTextField1_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1_matriculaActionPerformed
-        // TODO add your handling code here:
+        login l = new login();
+        l.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jTextField1_matriculaActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -391,6 +407,12 @@ public class alumno_frame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un usuario");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        JAdmin l = new JAdmin();
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     /**
@@ -448,6 +470,7 @@ public class alumno_frame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1_id;
     private javax.swing.JTextField jTextField1_matricula;
     private javax.swing.JTextField jTextField1_nombre;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tabla_alumnos;
     // End of variables declaration//GEN-END:variables
 }

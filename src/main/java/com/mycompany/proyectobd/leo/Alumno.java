@@ -342,18 +342,35 @@ public class Alumno {
         setAsistencia(jComboBox1_opciones);
         setMatricula(matricula);
         setId_alumno_asistencia(id_alumno);
-        String consulta = "INSERT INTO asitencia (id_alumno, asistio, fecha, tipo) VALUES (?,?,?,?);";
+
+        // Consulta para contar la asistencia del alumno en el almuerzo
+        String consultaConteo = "SELECT COUNT(*) FROM asitencia WHERE fecha = ? AND tipo = ? AND id_alumno = ?";
+        String consultaInsercion = "INSERT INTO asitencia (id_alumno, asistio, fecha, tipo) VALUES (?,?,?,?);";
         try {
-            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
-            cs.setInt(1, getId_alumno_asistencia());
-            cs.setString(2, getAsistencia());
-            cs.setString(3, getFecha());
-            cs.setString(4, getTipo());
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta, Impriendo Boleto");
+            CallableStatement csConteo = objetoConexion.establecerConexion().prepareCall(consultaConteo);
+            csConteo.setString(1, getFecha());
+            csConteo.setString(2, getTipo());
+            csConteo.setInt(3, getId_alumno_asistencia());
+            ResultSet resultadoConteo = csConteo.executeQuery();
+            if (resultadoConteo.next()) {
+                int conteo = resultadoConteo.getInt(1);
+                if (conteo > 0) {
+                    JOptionPane.showMessageDialog(null, "Ya se ha registrado la asistencia del alumno al almuerzo.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                } else {
+                    CallableStatement csInsercion = objetoConexion.establecerConexion().prepareCall(consultaInsercion);
+                    csInsercion.setInt(1, getId_alumno_asistencia());
+                    csInsercion.setString(2, getAsistencia());
+                    csInsercion.setString(3, getFecha());
+                    csInsercion.setString(4, getTipo());
+                    csInsercion.execute();
+                    JOptionPane.showMessageDialog(null, "Asistencia ingresada de manera correcta. Imprimiendo Boleto...");
+                }
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR DE MANERA CORRECTAMENTE" + e.toString());
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar la asistencia correctamente: " + e.toString());
         }
+
     }
       
     public int validar_asistencias(int id_alumno)

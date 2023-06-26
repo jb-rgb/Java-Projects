@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectobd.leo;
 
+import com.mycompany.proyectobd.JAdmin;
+import com.mycompany.proyectobd.login;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,6 +107,11 @@ public class usuario_administrar extends javax.swing.JFrame {
         });
 
         jButton6.setText("Atras");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,6 +242,12 @@ public class usuario_administrar extends javax.swing.JFrame {
             setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        JAdmin a = new JAdmin();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -186,6 +186,7 @@ public class JAdmin extends javax.swing.JFrame {
        //llamar al jframe de ingresar usuario 
        usuario_frame interface_Usuario = new usuario_frame();
        interface_Usuario.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton_ingresarUsuarioActionPerformed
 
     private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
@@ -200,11 +201,14 @@ public class JAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         agregar_alumno NuevoAlumno = new agregar_alumno();
         NuevoAlumno.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton_BecarioNuevo2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        login log = new login();
+        log.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonGenrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenrarReporteActionPerformed
@@ -219,13 +223,14 @@ public class JAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         alumno_frame SeguimientoBeca = new alumno_frame();
         SeguimientoBeca.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButtonSeguimientoBecaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JProducto producto = new JProducto();
         producto.setVisible(true);
         this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

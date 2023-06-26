@@ -6,6 +6,8 @@ package com.mycompany.proyectobd.leo;
 import java.time.LocalDate;
 import java.sql.Date;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
+
 
 
 /**
@@ -168,8 +170,23 @@ public class asistencia_alumno extends javax.swing.JFrame {
 
     private void jButton1_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_aceptarActionPerformed
         Alumno alo = new Alumno();
+        LocalTime horaActual = LocalTime.now();
+        String comidaSeleccionada;
+        //SELECT COUNT(*) FROM asitencia WHERE fecha ="13/06/2023" AND tipo="Almuerzo" AND id_alumno = 1
+        
+        if (horaActual.isBefore(LocalTime.NOON)) {
+            comidaSeleccionada = "Almuerzo";
+            System.out.println("Es antes de las 12");
+        } else {
+            System.out.println("Es despues de las 12");
+            comidaSeleccionada = "Comida";
+        }
+
+        
         alo.insertar_asistencia(jTextField1_fecha,  String.valueOf(jComboBox1_opciones.getSelectedItem()), String.valueOf(jComboBox1_comida.getSelectedItem()), getMatricula(), getId());
         this.setVisible(false);
+        
+        
         
     }//GEN-LAST:event_jButton1_aceptarActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectobd.leo;
 
+import com.mycompany.proyectobd.JAdmin;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,8 +132,8 @@ public class agregar_alumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        alumno_frame al = new alumno_frame();
+        this.dispose();
+        JAdmin al = new JAdmin();
         al.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
