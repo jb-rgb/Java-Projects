@@ -63,9 +63,11 @@ public class Producto {
 =======
         this.precioDesayunoB = 45;
     }
+<<<<<<< HEAD
+
+=======
     */
 
-    
     public int getIdProducto() {
         return idProducto;
     }

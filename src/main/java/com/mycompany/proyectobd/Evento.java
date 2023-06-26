@@ -24,6 +24,7 @@ public class Evento {
     String descripcionEvento;
     String fechaEvento;
    String lugarEvento;
+   String tipo_evento;
    
   
     
@@ -34,7 +35,7 @@ public class Evento {
      this.descripcionEvento = "";
      this.fechaEvento = null;
      this.lugarEvento = "";
-        
+       this.tipo_evento="";
     }
      
     public int getId_Evento() {
@@ -76,10 +77,16 @@ public class Evento {
     public void setLugar_Evento(String lugar) {
         this.lugarEvento = lugar;
     }
+     public String getTipo_evento() {
+        return tipo_evento;
+    }
     
+    public void setTipo_evento(String tipo) {
+        this.tipo_evento= tipo;
+    }
   
     
-    public void guardarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido) {
+    public void guardarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido,String tipo_Evento) {
   
         String nombre_evento= nombreEvento_recibido.getText();
         String descripcion_evento= descripcionEvento_recibido.getText();
@@ -93,17 +100,19 @@ public class Evento {
         setDescripcion_Evento(descripcion_evento);
         setLugar_Evento(lugar_evento);
         setFecha_Evento(fecha_evento);
+        setTipo_evento(tipo_evento);
         
      
           Conexion coneccion = new Conexion();
           
-           String consulta=" INSERT INTO eventos(nombre_evento,fecha_evento,descripcion_evento,lugar_evento) VALUES (?,?,?,?);" ;
+           String consulta=" INSERT INTO eventos(nombre_evento,fecha_evento,descripcion_evento,lugar_evento,tipo_evento) VALUES (?,?,?,?,?);" ;
              try{
                  CallableStatement cs = coneccion.establecerConexion().prepareCall(consulta);
                  cs.setString(1,getNombre_Evento());
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
+                 cs.setString(5,getTipo_evento());
               
     
                  cs.execute();
@@ -113,29 +122,32 @@ public class Evento {
              }catch(Exception e){
                  
                  JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR EL EVENTO"+e.toString());
+                 
              }
             
         }
       
     }
     
-    public void actualizarEvento(JTextField  IdEvento_recibido ,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido) {
+    public void actualizarEvento(JTextField  IdEvento_recibido ,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido,JTextField Tipo_evento) {
         
         setId_Evento(Integer.parseInt(IdEvento_recibido.getText()));
         setNombre_Evento(nombreEvento_recibido.getText());
         setDescripcion_Evento(descripcionEvento_recibido.getText());
         setLugar_Evento(lugarEvento_recibido.getText());
         setFecha_Evento(fechaEvento_recibido.getText());
+        setTipo_evento(Tipo_evento.getText());
         Conexion coneccion = new Conexion();
           
-           String consulta="UPDATE eventos SET nombre_evento =?, descripcion_evento = ? , fecha_evento = ? , lugar_evento=? WHERE eventos.id_evento=?;" ;
+           String consulta="UPDATE eventos SET nombre_evento =?, descripcion_evento = ? , fecha_evento = ? , lugar_evento=? ,tipo_evento=? WHERE eventos.id_evento=?;" ;
          try{
                  CallableStatement cs = coneccion.establecerConexion().prepareCall(consulta);
                  cs.setString(1,getNombre_Evento());
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
-                  cs.setInt(5,getId_Evento());
+                      cs.setString(5,getTipo_evento());
+                  cs.setInt(6,getId_Evento());
     
                  cs.execute();
                  
@@ -170,7 +182,7 @@ public class Evento {
 
     }
     
-    public void selecionaEvento(JTable tablaRecibida ,JTextField  IdEvento_recibido,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido){
+    public void selecionaEvento(JTable tablaRecibida ,JTextField  IdEvento_recibido,JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido,JTextField  tipoEvento_recibido){
         
        //  menuEvento_recibido.getValueAt(fila,4);
         try{
@@ -182,6 +194,8 @@ public class Evento {
                 descripcionEvento_recibido.setText(tablaRecibida.getValueAt(fila, 2).toString());
                  fechaEvento_recibido.setText(tablaRecibida.getValueAt(fila, 3).toString());
                  lugarEvento_recibido.setText(tablaRecibida.getValueAt(fila, 4).toString());
+                 tipoEvento_recibido.setText(tablaRecibida.getValueAt(fila, 5).toString());
+                 
                 
                 
                 
@@ -213,10 +227,11 @@ public class Evento {
         modelo.addColumn("descripcionEvento");
         modelo.addColumn("fechaEvento");
         modelo.addColumn("lugarEvento");
+          modelo.addColumn("Tipo de evento");
         paraTotalDeEventos.setModel(modelo);
         
         sql = "select * from eventos;";
-         String [] datos = new String[5];
+         String [] datos = new String[6];
         
         Statement st;
         
@@ -232,7 +247,9 @@ public class Evento {
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);  
+                datos[4] = rs.getString(5); 
+                datos[5] = rs.getString(6);  
+
 
                 
                 modelo.addRow(datos);
