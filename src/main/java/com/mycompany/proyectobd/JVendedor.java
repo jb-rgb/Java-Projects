@@ -111,13 +111,13 @@ public class JVendedor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Cobro_Producto_Interfaz cpi = new Cobro_Producto_Interfaz();
         cpi.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Cobro_Alimento_Interfaz cai = new Cobro_Alimento_Interfaz();
         cai.setVisible(true);
-        this.dispose();
+     
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

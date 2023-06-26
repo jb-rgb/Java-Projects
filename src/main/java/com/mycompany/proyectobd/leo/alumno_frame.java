@@ -18,9 +18,10 @@ public class alumno_frame extends javax.swing.JFrame {
      */
     public alumno_frame() {
         initComponents();
+          setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Alumno alumnos = new Alumno();
         alumnos.list(tabla_alumnos);
-        this.setLocationRelativeTo(null);
+      
         jTextField1_beca.setEditable(false);
     }
 
@@ -55,6 +56,11 @@ public class alumno_frame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Id");
 
@@ -352,6 +358,19 @@ public class alumno_frame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+              String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de alumno","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+            this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }     
+    }//GEN-LAST:event_formWindowClosing
+
     private void jTextField1_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1_matriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1_matriculaActionPerformed
@@ -372,6 +391,7 @@ public class alumno_frame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un usuario");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
 
     /**
      * @param args the command line arguments
