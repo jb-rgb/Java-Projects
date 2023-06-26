@@ -7,6 +7,7 @@ import com.mycompany.proyectobd.leo.usuario;
 import com.mycompany.proyectobd.leo.usuario_frame;
 import com.mycompany.proyectobd.leo.alumno_frame;
 import com.mycompany.proyectobd.jorge.JProducto;
+import com.mycompany.proyectobd.socrucito.Producto;
 import com.mycompany.proyectobd.leo.agregar_alumno;
 import java.awt.BorderLayout;
 
@@ -40,7 +41,6 @@ public class JAdmin extends javax.swing.JFrame {
         jButton_ingresarUsuario = new javax.swing.JButton();
         jButton_BecarioNuevo2 = new javax.swing.JButton();
         jButton_CrearEvento = new javax.swing.JButton();
-        jButtonAdministrarInventario = new javax.swing.JButton();
         jButtonSeguimientoBeca = new javax.swing.JButton();
         jButtonGenrarReporte = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -78,13 +78,6 @@ public class JAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButtonAdministrarInventario.setText("Inventario");
-        jButtonAdministrarInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdministrarInventarioActionPerformed(evt);
-            }
-        });
-
         jButtonSeguimientoBeca.setText("Seguimiento beca");
         jButtonSeguimientoBeca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +92,7 @@ public class JAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Ingresar Producto");
+        jButton2.setText("Inventario");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -113,6 +106,7 @@ public class JAdmin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,6 +129,25 @@ public class JAdmin extends javax.swing.JFrame {
                         .addComponent(jButton_CrearEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))))
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton_BecarioNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSeguimientoBeca, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_CrearEvento)
+                    .addComponent(jButtonGenrarReporte))
+                .addGap(47, 47, 47))
+>>>>>>> main
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,11 +162,17 @@ public class JAdmin extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSeguimientoBeca)
+<<<<<<< HEAD
                     .addComponent(jButton2)
                     .addComponent(jButton_CrearEvento))
                 .addGap(44, 44, 44)
                 .addComponent(jButtonGenrarReporte)
                 .addContainerGap(285, Short.MAX_VALUE))
+=======
+                    .addComponent(jButtonGenrarReporte)
+                    .addComponent(jButton2))
+                .addContainerGap(112, Short.MAX_VALUE))
+>>>>>>> main
         );
 
         jButton1.setText("Salir");
@@ -213,6 +232,7 @@ public class JAdmin extends javax.swing.JFrame {
         SeguimientoBeca.setVisible(true);
     }//GEN-LAST:event_jButtonSeguimientoBecaActionPerformed
 
+<<<<<<< HEAD
     private void jButtonAdministrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarInventarioActionPerformed
         // TODO add your handling code here:
         JProducto productos = new JProducto();
@@ -220,6 +240,9 @@ public class JAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAdministrarInventarioActionPerformed
 
     private void jButton_CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEventoActionPerformed
+=======
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+>>>>>>> main
         // TODO add your handling code here:
 
         CrearEvento interfaceNuevoEvento = new CrearEvento();
@@ -286,7 +309,6 @@ public class JAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonAdministrarInventario;
     private javax.swing.JButton jButtonGenrarReporte;
     private javax.swing.JButton jButtonSeguimientoBeca;
     private javax.swing.JButton jButton_BecarioNuevo2;
