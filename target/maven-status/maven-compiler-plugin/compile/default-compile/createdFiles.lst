@@ -20,6 +20,7 @@ com\mycompany\proyectobd\reportes$4.class
 com\mycompany\proyectobd\jorge\JProducto$4.class
 com\mycompany\proyectobd\socrucito\Cobro_Alimento_Interfaz.class
 com\mycompany\proyectobd\MenusEvento$4.class
+com\mycompany\proyectobd\jorge\JMenosVendidosProductos$2.class
 com\mycompany\proyectobd\leo\agregar_alumno$5.class
 com\mycompany\proyectobd\jorge\JProducto$1.class
 com\mycompany\proyectobd\leo\usuario.class
@@ -45,10 +46,15 @@ com\mycompany\proyectobd\JVendedor.class
 =======
 com\mycompany\proyectobd\socrucito\Cobro_Alimento_Interfaz$2.class
 com\mycompany\proyectobd\AgregarMenu$3.class
+<<<<<<< HEAD
+com\mycompany\proyectobd\jorge\JMenosVendidosProductos.class
+=======
+>>>>>>> main
 >>>>>>> main
 com\mycompany\proyectobd\leo\usuario_frame$3.class
 com\mycompany\proyectobd\socrucito\Cobro_Producto_Interfaz$1.class
 com\mycompany\proyectobd\jorge\JFInventario.class
+com\mycompany\proyectobd\jorge\JProducto$9.class
 com\mycompany\proyectobd\Eventoframe$3.class
 com\mycompany\proyectobd\leo\agregar_alumno$2.class
 com\mycompany\proyectobd\leo\asistencia_alumno$3.class
@@ -83,6 +89,10 @@ com\mycompany\proyectobd\leo\usuario_frame$4.class
 com\mycompany\proyectobd\JDueño$3.class
 com\mycompany\proyectobd\socrucito\Cobro_Producto_Interfaz.class
 com\mycompany\proyectobd\JVendedor$4.class
+<<<<<<< HEAD
+com\mycompany\proyectobd\jorge\JProductosEscasos$1.class
+=======
+>>>>>>> main
 >>>>>>> main
 com\mycompany\proyectobd\JAdmin$2.class
 com\mycompany\proyectobd\MenusEvento$5.class
@@ -95,6 +105,8 @@ com\mycompany\proyectobd\JAdmin$9.class
 >>>>>>> main
 com\mycompany\proyectobd\leo\asistencia_alumno$1.class
 com\mycompany\proyectobd\Eventoframe$1.class
+com\mycompany\proyectobd\jorge\JMenosVendidosProductos$1.class
+com\mycompany\proyectobd\jorge\JProductosEscasos$2.class
 com\mycompany\proyectobd\leo\asistencias_por_alumno$1.class
 com\mycompany\proyectobd\Conexion.class
 com\mycompany\proyectobd\leo\usuario_frame$5.class
@@ -112,6 +124,7 @@ com\mycompany\proyectobd\JVendedor$3.class
 com\mycompany\proyectobd\socrucito\Cobro_Producto_Interfaz$3.class
 >>>>>>> main
 com\mycompany\proyectobd\socrucito\Cobro_interfaz.class
+com\mycompany\proyectobd\jorge\JProducto$8.class
 com\mycompany\proyectobd\CrearEvento$3.class
 com\mycompany\proyectobd\leo\alumno_frame.class
 com\mycompany\proyectobd\Eventoframe$2.class
@@ -152,6 +165,10 @@ com\mycompany\proyectobd\jorge\JProducto$2.class
 com\mycompany\proyectobd\JAdmin$4.class
 com\mycompany\proyectobd\MenusEvento$3.class
 com\mycompany\proyectobd\JAdmin$7.class
+<<<<<<< HEAD
+com\mycompany\proyectobd\jorge\JProductosEscasos.class
+=======
+>>>>>>> main
 >>>>>>> main
 com\mycompany\proyectobd\leo\agregar_alumno$3.class
 com\mycompany\proyectobd\leo\Alumno.class
