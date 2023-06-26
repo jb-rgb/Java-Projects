@@ -7,6 +7,7 @@ package com.mycompany.proyectobd.leo;
 import com.mycompany.proyectobd.Conexion;
 import javax.swing.*;
 import java.sql.*;
+import java.util.TimerTask;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,6 +55,9 @@ public class usuario {
 
     public void crear_usuario(JTextField jTextField1_nombre, JTextField jTextField1_password, JTextField jTextField2_correo, int tipo_usuario) {
         Conexion objetoConexion = new Conexion();
+        java.util.Timer timer = new java.util.Timer();      // variable timer
+        long maximumTime = 5000;   // Establecer el tiempo máximo de ejecución en 2 minutos
+        long startTime = System.currentTimeMillis();    // Guardamos el tiempo de inicio
         //validar los datos del usuario a ingresar  nombre
         System.out.println(jTextField1_nombre.getText());
         String nombre = jTextField1_nombre.getText();
@@ -82,27 +86,40 @@ public class usuario {
                 ResultSet resultSet = verificarCorreo.executeQuery();
 
                 if (resultSet.next()) {
-                     int numero = resultSet.getInt(1);
-                    
-                    if (numero<1) {
-                       // System.out.println("SE puede ingresasr");
+                    int numero = resultSet.getInt(1);
+
+                    if (numero < 1) {
+                        // System.out.println("SE puede ingresasr");
                         this.setNombre_usuario(nombre);
                         this.setCorreo_usuario(correo);
                         this.setContrasena_usuario(password);
                         this.setTipo_usuario(tipo);
                         //ingresar la informacion a la base de datos 
                         String IngresarUsuarioConsulta = "INSERT INTO usuario (nombre_usuario, contrasena_usuario, tipo_usuario, correo_usuario) VALUES (?, ?, ?, ?);";
-                        try {
-                            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(IngresarUsuarioConsulta);
-                            cs.setString(1, getNombre_usuario());
-                            cs.setString(2, getContrasena_usuario());
-                            cs.setInt(3, getTipo_usuario());
-                            cs.setString(4, getCorreo_usuario());
-                            cs.execute();
-                            JOptionPane.showMessageDialog(null, "Usuario creado con éxito");
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
-                        }
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                try {
+                                    CallableStatement cs = objetoConexion.establecerConexion().prepareCall(IngresarUsuarioConsulta);
+                                    cs.setString(1, getNombre_usuario());
+                                    cs.setString(2, getContrasena_usuario());
+                                    cs.setInt(3, getTipo_usuario());
+                                    cs.setString(4, getCorreo_usuario());
+                                    cs.execute();
+                                    JOptionPane.showMessageDialog(null, "Usuario creado con éxito");
+                                    timer.cancel();
+                                } catch (Exception e) {
+                                    JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR AL USUARIO CORRECTAMENTE" + e.toString());
+                                    timer.cancel();
+                                }
+
+                                if (System.currentTimeMillis() - startTime > maximumTime) {
+                                    JOptionPane.showMessageDialog(null, "Tiempo limite alcanzado");
+                                    timer.cancel();
+                                }
+
+                            }
+                        }, 0, 1000);
                     }
                 }
 

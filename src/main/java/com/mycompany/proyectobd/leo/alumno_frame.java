@@ -351,11 +351,11 @@ public class alumno_frame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-<<<<<<< HEAD
+
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
               String botones[]={"Cerrar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de crear evento","Titulo",0,0,null,botones,this);
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de alumno","Titulo",0,0,null,botones,this);
         if(eleccion == JOptionPane.YES_OPTION){
             this.dispose();
         }else if(eleccion==JOptionPane.NO_OPTION){
@@ -363,7 +363,7 @@ public class alumno_frame extends javax.swing.JFrame {
            //JOptionPane.showConfirmDialog("pasa", evt);
         }     
     }//GEN-LAST:event_formWindowClosing
-=======
+
     private void jTextField1_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1_matriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1_matriculaActionPerformed
@@ -384,7 +384,7 @@ public class alumno_frame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un usuario");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
->>>>>>> main
+
 
     /**
      * @param args the command line arguments

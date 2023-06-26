@@ -7,26 +7,15 @@ import com.mysql.cj.jdbc.Driver;
 
 public class Conexion {
 
-<<<<<<< HEAD
-
-
      Connection conectar = null;
     String usuario = "root";
     String contrasenia = "mr.robot";
-=======
-    Connection conectar = null;
-    String usuario = "root";
-    String contrasenia = "";
->>>>>>> main
     String bd = "cafeteria";
     String ip = "localhost";
     String puerto = "3036";
     String cadena = "jdbc:mysql://localhost:3306/cafeteria?zeroDateTimeBehavior=CONVERT_TO_NULL";
 
-<<<<<<< HEAD
 
-=======
->>>>>>> main
     public Connection establecerConexion(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

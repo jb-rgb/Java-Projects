@@ -180,13 +180,13 @@ public class CrearEvento extends javax.swing.JFrame {
     private void jButtonCrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEventoActionPerformed
         // TODO add your handling code here:
            String Evento =jComboBoxTipo_evento.getSelectedItem().toString();
-           int tipo_evento = -1;
+           String tipo_evento = "";
            if(Evento.compareTo("especial")==0){
-              tipo_evento = 0;
-           }else if(Evento.compareTo("especial")==0){
-               tipo_evento = 1;
-           }else if(Evento.compareTo("especial")==0){
-               tipo_evento = 3;
+              tipo_evento = "especial";
+           }else if(Evento.compareTo("formal")==0){
+               tipo_evento = "formal";
+           }else if(Evento.compareTo("cultural")==0){
+               tipo_evento = "cultural";
            }
         Evento evento1 = new Evento();
         evento1.guardarEvento(jTextNombreEvento, jTextDescripcionEvento, jTextFechaEvento,jTextLugarEvento,tipo_evento);

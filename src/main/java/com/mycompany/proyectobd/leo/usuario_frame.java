@@ -168,12 +168,11 @@ public class usuario_frame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        usuario usuario1 = new usuario();
        usuario1.crear_usuario(jTextField1_nombre, jTextField1_password, jTextField2_correo, jComboBox1_tipo.getSelectedIndex());
-       usuario_administrar jd = new usuario_administrar();
-       jd.setVisible(true);
-       this.setVisible(false); 
+       //usuario_administrar jd = new usuario_administrar();
+       //jd.setVisible(true);
+       //this.setVisible(false); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-<<<<<<< HEAD
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
          // TODO add your handling code here:
@@ -186,13 +185,13 @@ public class usuario_frame extends javax.swing.JFrame {
            //JOptionPane.showConfirmDialog("pasa", evt);
         }
     }//GEN-LAST:event_formWindowClosing
-=======
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         usuario_administrar jd = new usuario_administrar();
         jd.setVisible(true);
-        this.setVisible(false); 
+        
     }//GEN-LAST:event_jButton2ActionPerformed
->>>>>>> main
+
 
     /**
      * @param args the command line arguments

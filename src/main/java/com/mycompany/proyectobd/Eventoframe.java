@@ -65,6 +65,11 @@ public class Eventoframe extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tabla_eventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,13 +177,12 @@ public class Eventoframe extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextFieldTipo_evento, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldNombreEvento1)
-                                        .addComponent(jTextFieldFechaEvento1)
-                                        .addComponent(jTextFieldDescripcionE2)
-                                        .addComponent(jTextFieldLugarEvento2)
-                                        .addComponent(jModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldIdEvento))))))
+                                    .addComponent(jTextFieldNombreEvento1)
+                                    .addComponent(jTextFieldFechaEvento1)
+                                    .addComponent(jTextFieldDescripcionE2)
+                                    .addComponent(jTextFieldLugarEvento2)
+                                    .addComponent(jModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldIdEvento)))))
                     .addComponent(jLabel1))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -209,9 +213,9 @@ public class Eventoframe extends javax.swing.JFrame {
                     .addComponent(jTextFieldTipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldLugarEvento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLugarE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabelLugarE)
+                    .addComponent(jTextFieldLugarEvento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonClearEvento)
                     .addComponent(jModificar))
@@ -291,6 +295,19 @@ public class Eventoframe extends javax.swing.JFrame {
         nuevoM.setVisible(true);
         
     }//GEN-LAST:event_jButtonAgregarMenuActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+           // TODO add your handling code here:
+        String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana de ingresar usuario","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+             this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -24,7 +24,7 @@ public class Evento {
     String descripcionEvento;
     String fechaEvento;
    String lugarEvento;
-   int tipo_evento;
+   String tipo_evento;
    
   
     
@@ -35,7 +35,7 @@ public class Evento {
      this.descripcionEvento = "";
      this.fechaEvento = null;
      this.lugarEvento = "";
-       this.tipo_evento=0;
+       this.tipo_evento="";
     }
      
     public int getId_Evento() {
@@ -77,16 +77,16 @@ public class Evento {
     public void setLugar_Evento(String lugar) {
         this.lugarEvento = lugar;
     }
-     public int getTipo_evento() {
+     public String getTipo_evento() {
         return tipo_evento;
     }
     
-    public void setTipo_evento(int tipo) {
+    public void setTipo_evento(String tipo) {
         this.tipo_evento= tipo;
     }
   
     
-    public void guardarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido,int tipo_Evento) {
+    public void guardarEvento(JTextField  nombreEvento_recibido , JTextField  descripcionEvento_recibido,JTextField  fechaEvento_recibido, JTextField  lugarEvento_recibido,String tipo_Evento) {
   
         String nombre_evento= nombreEvento_recibido.getText();
         String descripcion_evento= descripcionEvento_recibido.getText();
@@ -112,7 +112,7 @@ public class Evento {
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
-                 cs.setInt(5,getTipo_evento());
+                 cs.setString(5,getTipo_evento());
               
     
                  cs.execute();
@@ -122,6 +122,7 @@ public class Evento {
              }catch(Exception e){
                  
                  JOptionPane.showMessageDialog(null, "NO SE PUDO INGRESAR EL EVENTO"+e.toString());
+                 
              }
             
         }
@@ -135,7 +136,7 @@ public class Evento {
         setDescripcion_Evento(descripcionEvento_recibido.getText());
         setLugar_Evento(lugarEvento_recibido.getText());
         setFecha_Evento(fechaEvento_recibido.getText());
-        setTipo_evento(Integer.parseInt(Tipo_evento.getText()));
+        setTipo_evento(Tipo_evento.getText());
         Conexion coneccion = new Conexion();
           
            String consulta="UPDATE eventos SET nombre_evento =?, descripcion_evento = ? , fecha_evento = ? , lugar_evento=? ,tipo_evento=? WHERE eventos.id_evento=?;" ;
@@ -145,7 +146,7 @@ public class Evento {
                  cs.setString(2,getDescripcion_Evento());
                  cs.setString(3,getFecha_Evento());
                  cs.setString(4,getLugar_Evento());
-                      cs.setInt(5,getTipo_evento());
+                      cs.setString(5,getTipo_evento());
                   cs.setInt(6,getId_Evento());
     
                  cs.execute();
@@ -226,10 +227,11 @@ public class Evento {
         modelo.addColumn("descripcionEvento");
         modelo.addColumn("fechaEvento");
         modelo.addColumn("lugarEvento");
+          modelo.addColumn("Tipo de evento");
         paraTotalDeEventos.setModel(modelo);
         
         sql = "select * from eventos;";
-         String [] datos = new String[5];
+         String [] datos = new String[6];
         
         Statement st;
         
@@ -245,7 +247,9 @@ public class Evento {
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);  
+                datos[4] = rs.getString(5); 
+                datos[5] = rs.getString(6);  
+
 
                 
                 modelo.addRow(datos);

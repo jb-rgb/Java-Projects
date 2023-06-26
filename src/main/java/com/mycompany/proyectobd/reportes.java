@@ -58,7 +58,7 @@ public class reportes extends javax.swing.JFrame {
 
         jLabel_tiempo.setText("tiempo");
 
-        jComboBox_tipoReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "reporte ventas", "reporte eventos" }));
+        jComboBox_tipoReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "reporte ventas", "reporte eventos", "sin reporte" }));
         jComboBox_tipoReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_tipoReporteActionPerformed(evt);
@@ -148,101 +148,110 @@ public class reportes extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tipo_Reporte = jComboBox_tipoReporte.getSelectedItem().toString();
         String tiempo = jComboBox_Tiempo.getSelectedItem().toString();
-        String Consulta ="";
+        String Consulta = "";
         Document documento = new Document();
-        if(tipo_Reporte.compareTo("reporte eventos")==0){
-            if (!(tiempo.isEmpty())) {
-            try {
-                String ruta = System.getProperty("user.home");
-                PdfWriter.getInstance(documento, new FileOutputStream(ruta +"/Desktop/ReporteEventos.pdf"));
-                documento.open();
-                PdfPTable tabla = new PdfPTable(6);
-               tabla.addCell("Tiempo");
-                tabla.addCell("evento");
-                tabla.addCell("lugar");
-                tabla.addCell("menu");
-                tabla.addCell("numero platillos");
-                tabla.addCell("Precio menu");
-                tabla.addCell("Total");
-             
-                Conexion objetoConexion = new Conexion();
-                
-                if(tiempo.compareTo("mes")==0){
-                    System.out.println("INGRESO A MES");
-                     Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos)  FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE MONTH(e.fecha_evento) = MONTH(CURRENT_DATE) AND YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
-                }else if(tiempo.compareTo("año")==0){
-                    Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos) FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE  YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
-                }
-                Statement st1;
+        
+       System.out.println("Numero:"+tipo_Reporte.compareTo("sin reporte"));
+       
+        if(tipo_Reporte.compareTo("reporte eventos")==0) {
+               System.out.println("entro al if");
+            if(!(tiempo.isEmpty())) {
                 try {
-                
-                    st1 = objetoConexion.establecerConexion().createStatement();
-                    ResultSet rs = st1.executeQuery(Consulta);
-                    while (rs.next() ) {
-                        tabla.addCell(tiempo);
-                        tabla.addCell(rs.getString(1));
-                        tabla.addCell(rs.getString(2));
-                        tabla.addCell(rs.getString(3));
-                        tabla.addCell(rs.getString(4));
-                        tabla.addCell(rs.getString(5));
-                        tabla.addCell(rs.getString(6));
-                        documento.add(tabla);
+                    String ruta = System.getProperty("user.home");
+                    PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteEventos.pdf"));
+                    documento.open();
+                    PdfPTable tabla = new PdfPTable(6);
+                    tabla.addCell("Tiempo");
+                    tabla.addCell("evento");
+                    tabla.addCell("lugar");
+                    tabla.addCell("menu");
+                    tabla.addCell("numero platillos");
+                    tabla.addCell("Precio menu");
+                    tabla.addCell("Total");
+
+                    Conexion objetoConexion = new Conexion();
+                    System.out.println("AQUI");
+                    if(tiempo.compareTo("mes") == 0) {
+                        System.out.println("INGRESO A MES");
+                        Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos)  FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE MONTH(e.fecha_evento) = MONTH(CURRENT_DATE) AND YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
+                    }else if(tiempo.compareTo("año") == 0) {
+                        Consulta = "SELECT e.nombre_evento , e.lugar_evento, m.nombre_menu , m.numero_platillos,m.precio_menu , (m.precio_menu * m.numero_platillos) FROM eventos e JOIN menu_evento m ON e.id_evento = m.id_evento WHERE  YEAR(e.fecha_evento) = YEAR(CURRENT_DATE)";
+                    }
+                    Statement st1;
+                    try {
+
+                        st1 = objetoConexion.establecerConexion().createStatement();
+                        ResultSet rs = st1.executeQuery(Consulta);
+                        while (rs.next()) {
+                            tabla.addCell(tiempo);
+                            tabla.addCell(rs.getString(1));
+                            tabla.addCell(rs.getString(2));
+                            tabla.addCell(rs.getString(3));
+                            tabla.addCell(rs.getString(4));
+                            tabla.addCell(rs.getString(5));
+                            tabla.addCell(rs.getString(6));
+                            documento.add(tabla);
+                        }
+
+                    } catch (DocumentException | SQLException e) {
+                        JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
                     }
 
-                } catch (DocumentException | SQLException e) {
-                    JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                    documento.close();
+                    JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+
+                } catch (DocumentException | FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE" + e);
                 }
 
-                documento.close();
-                JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+            } 
+        }else if(tipo_Reporte.compareTo("reporte ventas") ==0 ) {
+                if(!(tiempo.isEmpty())) {
+                    try {
+                        String ruta = System.getProperty("user.name");
+                        PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteVentas.pdf"));
+                        documento.open();
+                        PdfPTable tabla = new PdfPTable(3);
+                        tabla.addCell("Reporte");
+                        tabla.addCell("Tiempo");
+                        tabla.addCell("cantidad vendida");
+                        Conexion objetoConexion = new Conexion();
 
-            } catch (DocumentException | FileNotFoundException e) {
-                JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE"+e);
-            }
+                        String Consulta1 = "Select * from eventos";
+                        Statement st;
+                        try {
 
-            
-           
-        }else if(tipo_Reporte.compareTo("reporte ventas")==0){
-            if (!(tiempo.isEmpty())) {
-            try {
-                String ruta = System.getProperty("user.name");
-                PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/ReporteVentas.pdf"));
-                documento.open();
-                PdfPTable tabla = new PdfPTable(3);
-                tabla.addCell("Reporte");
-                tabla.addCell("Tiempo");
-                tabla.addCell("cantidad vendida");
-                Conexion objetoConexion = new Conexion();
+                            st = objetoConexion.establecerConexion().createStatement();
+                            ResultSet rs = st.executeQuery(Consulta1);
+                            while (rs.next()) {
+                                tabla.addCell(rs.getString(1));
+                                tabla.addCell(rs.getString(2));
+                                tabla.addCell(rs.getString(3));
+                                documento.add(tabla);
+                            }
 
-                String Consulta1 = "Select * from eventos";
-                Statement st;
-                try {
+                        } catch (DocumentException | SQLException e) {
+                            JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
+                        }
 
-                    st = objetoConexion.establecerConexion().createStatement();
-                    ResultSet rs = st.executeQuery(Consulta1);
-                    while (rs.next()) {
-                        tabla.addCell(rs.getString(1));
-                        tabla.addCell(rs.getString(2));
-                        tabla.addCell(rs.getString(3));
-                        documento.add(tabla);
+                        documento.close();
+                        JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+
+                    } catch (DocumentException | FileNotFoundException e) {
+                        JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE");
                     }
 
-                } catch (DocumentException | SQLException e) {
-                    JOptionPane.showMessageDialog(null, "NO SE PUDO REALIZAR LA CONSULTA");
                 }
 
-                documento.close();
-                JOptionPane.showMessageDialog(null, "PDF creado correctamente");
-
-            } catch (DocumentException | FileNotFoundException e) {
-                JOptionPane.showMessageDialog(null, "NO SE PUDO GENERAR EL REPORTE");
+            } else if(tipo_Reporte.compareTo("sin reporte")== 0 ) {
+                 JOptionPane.showMessageDialog(null, "Elige una opcion de evento");    
+                 return;
             }
-
-        }
-            
-        }
     }//GEN-LAST:event_jButton_generarReporteActionPerformed
-    }
+    
+    
+    
+    
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
          String botones[]={"Cerrar","Cancelar"};

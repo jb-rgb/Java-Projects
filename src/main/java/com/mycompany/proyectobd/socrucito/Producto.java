@@ -68,10 +68,6 @@ public class Producto {
 =======
     */
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> main
     public int getIdProducto() {
         return idProducto;
     }

@@ -17,12 +17,12 @@ public class JProducto extends javax.swing.JFrame {
      */
     public JProducto() {
         initComponents();
-<<<<<<< HEAD
+
           this.setLocationRelativeTo(null);
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-=======
-        TxtIdProducto.setEnabled(false);
->>>>>>> main
+
+TxtIdProducto.setEnabled(false);
+
         Producto producto = new Producto();
         producto.mostrarProducto(TbListaProductos);
         this.setLocationRelativeTo(null);
