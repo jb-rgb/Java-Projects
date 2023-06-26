@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectobd;
 
+import com.mycompany.proyectobd.leo.alumno_frame;
+
 /**
  *
  * @author jorge
@@ -52,6 +54,11 @@ public class JDueño extends javax.swing.JFrame {
         });
 
         jButton_seguimientoBeca.setText("Seguimiento beca");
+        jButton_seguimientoBeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_seguimientoBecaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +125,15 @@ public class JDueño extends javax.swing.JFrame {
 
     private void jButton_agregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregarEventoActionPerformed
         // TODO add your handling code here:
+            CrearEvento interfaceNuevoEvento = new CrearEvento();
+        interfaceNuevoEvento.setVisible(true);
     }//GEN-LAST:event_jButton_agregarEventoActionPerformed
+
+    private void jButton_seguimientoBecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_seguimientoBecaActionPerformed
+        // TODO add your handling code here:
+           alumno_frame SeguimientoBeca = new alumno_frame();
+        SeguimientoBeca.setVisible(true);
+    }//GEN-LAST:event_jButton_seguimientoBecaActionPerformed
 
     /**
      * @param args the command line arguments

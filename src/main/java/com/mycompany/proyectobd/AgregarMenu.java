@@ -5,6 +5,8 @@
  */
 package com.mycompany.proyectobd;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -16,6 +18,8 @@ public class AgregarMenu extends javax.swing.JFrame {
      */
     public AgregarMenu() {
         initComponents();
+             this.setLocationRelativeTo(null);
+ setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -40,6 +44,11 @@ public class AgregarMenu extends javax.swing.JFrame {
         jTextFieldId_Evento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabelNombreMenu.setText("Nombre menu:");
 
@@ -155,6 +164,18 @@ public class AgregarMenu extends javax.swing.JFrame {
         MenuEvento nuevoMenu = new MenuEvento();
         nuevoMenu.guardarMenu(jTextFieldNombreMenu, jTextFieldPrecioMenu, jTextFieldDescripcionMenu, jTextFieldNumeroPlatillos, jTextFieldId_Evento);
     }//GEN-LAST:event_jButtonIngresarMenuActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+          String botones[]={"Cerrar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this,"Desea cerrar la ventana","Titulo",0,0,null,botones,this);
+        if(eleccion == JOptionPane.YES_OPTION){
+             this.dispose();
+        }else if(eleccion==JOptionPane.NO_OPTION){
+            System.out.println("Se cancelo el cierre ");
+           //JOptionPane.showConfirmDialog("pasa", evt);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
