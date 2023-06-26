@@ -309,9 +309,16 @@ public class alumno_frame extends javax.swing.JFrame {
         if (!jTextField1_matricula.getText().isEmpty()) {
         if (!jTextField1_id.getText().isEmpty()) {
             try {
-                int id = Integer.parseInt(jTextField1_id.getText());
-                asistencia_alumno jd = new asistencia_alumno(jTextField1_matricula.getText(), id);
-                jd.setVisible(true); 
+                Alumno al = new Alumno();
+                int r = al.validar_asistencias(Integer.parseInt(jTextField1_id.getText()));
+                if (r!=0)
+                {
+                    int id = Integer.parseInt(jTextField1_id.getText());
+                    asistencia_alumno jd = new asistencia_alumno(jTextField1_matricula.getText(), id);
+                    jd.setVisible(true); 
+                }else{
+                    JOptionPane.showMessageDialog(null, "Demasiadas inasistencias, revisar con servicios escolares", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "El ID debe ser un número válido");
             }
@@ -320,7 +327,7 @@ public class alumno_frame extends javax.swing.JFrame {
         }
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un alumno");
-           }
+        }
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

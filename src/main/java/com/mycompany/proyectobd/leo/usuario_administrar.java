@@ -230,6 +230,7 @@ public class usuario_administrar extends javax.swing.JFrame {
         if (option == JOptionPane.YES_OPTION) {
             // Aquí puedes agregar el código adicional que quieras ejecutar antes de cerrar la ventana.
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+          
         } else {
             setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         }
