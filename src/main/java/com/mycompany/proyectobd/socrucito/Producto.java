@@ -192,6 +192,87 @@ public class Producto {
         }
     }
     
+    public void mostrarProductoEscaso(JTable tablaProductoEscaso) {
+        Conexion conec = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_producto");
+        modelo.addColumn("nombre_producto");
+        modelo.addColumn("descripcion_producto");
+        modelo.addColumn("precio_producto");
+        modelo.addColumn("cantidad_producto");
+        tablaProductoEscaso.setModel(modelo);
+        String sql = "SELECT * FROM productos WHERE cantidad_producto <= 5;";
+        String[] datos = new String[5];
+        Statement st;
+        try {
+            st = conec.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                modelo.addRow(datos);
+            }
+            tablaProductoEscaso.setModel(modelo);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void mostrarProductoMenosVendido(JTable tablaProductoMenosVendido) {
+        Conexion conec = new Conexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_producto");
+        modelo.addColumn("nombre_producto");
+        modelo.addColumn("descripcion_producto");
+        modelo.addColumn("precio_producto");
+        modelo.addColumn("cantidad_producto");
+        tablaProductoMenosVendido.setModel(modelo);
+        String sql = "SELECT * FROM productos WHERE cantidad_producto >= 30 AND EXTRACT(DAY FROM CURRENT_DATE) = 30;"; // Para PostgreSQL
+        // String sql = "SELECT * FROM productos WHERE cantidad_producto >= 30 AND DAY(CURRENT_DATE()) = 30;" // Para MySQL
+        String[] datos = new String[5];
+        Statement st;
+        try {
+            st = conec.establecerConexion().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                modelo.addRow(datos);
+            }
+            tablaProductoMenosVendido.setModel(modelo);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    public void alertaProductoEscaso() {
+        Conexion conec = new Conexion();
+        String sql = "SELECT nombre_producto, cantidad_producto FROM productos WHERE cantidad_producto <= ?";
+        try (Connection conn = conec.establecerConexion();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, 5); // Filtro para obtener productos con existencia menor o igual a 5
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre_producto");
+                    int existencia = rs.getInt("cantidad_producto");
+                    if (existencia == 0) {
+                        JOptionPane.showMessageDialog(null, "El producto " + nombre + " esta agotado");
+                    } else if (existencia <= 5) {
+                        JOptionPane.showMessageDialog(null, "El producto " + nombre + " esta por agotarse");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
     public void eliminarProducto(JTextField id_producto) {
         String idProductoString = id_producto.getText();
         BigInteger idProductoBigInt = new BigInteger(idProductoString);
@@ -206,7 +287,6 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
-
     
     public void buscarProducto(JTextField nombre_producto) {
         setNombreProducto(nombre_producto.toString());
@@ -217,34 +297,6 @@ public class Producto {
             cs.setString(1, getNombreProducto());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Producto encontrado");
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
-        }
-    }
-    
-    public void reducirCantidad(JTextField id_producto, JTextField cantidadAumentada) {
-        setIdProducto(Integer.parseInt(id_producto.toString()));
-        Conexion conec = new Conexion();
-        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto - ? WHERE productos.id_producto = ?;";
-        try {
-            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
-            cs.setString(1, cantidadAumentada.toString());
-            cs.setString(2, Integer.toString(getIdProducto()));
-            JOptionPane.showMessageDialog(null, "Se actualizo la cantidad del producto");
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
-        }
-    }
-    
-    public void aumentarCantidad(JTextField id_producto, JTextField cantidadComprada) {
-        setIdProducto(Integer.parseInt(id_producto.toString()));
-        Conexion conec = new Conexion();
-        String consulta = "UPDATE productos SET cantidad_producto = cantidad_producto + ? WHERE productos.id_producto = ?";
-        try {
-            CallableStatement cs = conec.establecerConexion().prepareCall(consulta);
-            cs.setString(1, cantidadComprada.toString());
-            cs.setString(2, Integer.toString(getIdProducto()));
-            JOptionPane.showMessageDialog(null, "Se actualizo la cantidad del producto");
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
